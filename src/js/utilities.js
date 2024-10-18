@@ -32,3 +32,11 @@ fetch(`https://booking-com.p.rapidapi.com/v1/hotels/facilities?hotel_id=1676161&
 .then(response => response.json()) // Parse JSON response
 .then(data => console.log(data))
 .catch(error => console.error('Error fetching data:', error));
+
+function initializeHomePage() {
+  const root = document.getElementsByName('body');
+  const xy = document.createElement('h1');
+  xy.textContent("linked to home page.");
+  root.appendChild(xy);
+}
+initializeHomePage();
