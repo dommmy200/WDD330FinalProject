@@ -35,8 +35,11 @@ fetch(`https://booking-com.p.rapidapi.com/v1/hotels/facilities?hotel_id=1676161&
 
 function initializeHomePage() {
   const root = document.getElementsByName('body');
-  const xy = document.createElement('h1');
-  xy.textContent("linked to home page.");
-  root.appendChild(xy);
+  const h1 = document.createElement('h1');
+  h1.textContent("Go to Home Page.");
+  const anchor = document.createElement('a');
+  anchor.href = "./src/index.html";
+  anchor.appendChild(h1);
+  root.appendChild(anchor);
 }
 initializeHomePage();
