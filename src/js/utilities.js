@@ -43,3 +43,4 @@ function initializeHomePage() {
   root.appendChild(anchor);
 }
 initializeHomePage();
+
