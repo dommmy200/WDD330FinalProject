@@ -20,7 +20,6 @@ export function getParams(param) {
   return urlParams.get(param); // Return the parameter value
 }
 
-const apiKey = '5da6d7f6efmsh009188dc742150fp1b8341jsn543dea9be0a9'; // Replace with your actual key
 
 fetch(`https://booking-com.p.rapidapi.com/v1/hotels/facilities?hotel_id=1676161&locale=en-gb`, {
   method: 'GET',
@@ -32,6 +31,21 @@ fetch(`https://booking-com.p.rapidapi.com/v1/hotels/facilities?hotel_id=1676161&
 .then(response => response.json()) // Parse JSON response
 .then(data => console.log(data))
 .catch(error => console.error('Error fetching data:', error));
+
+const axios = require('axios');
+
+const mockarooApiKey = 'c8273bc0'; // API key
+const mockarooUrl = 'https://api.mockaroo.com/api/v1/download?key=mockarooApiKey&count=100&format=json&fields=hotelId,name,location,amenities,rooms,image'; // Replace with the URL of your Mockaroo dataset
+
+axios.get(mockarooUrl)
+  .then(response => {
+    const hotelData = response.data;
+    console.log(hotelData);
+    // Process the hotel data as needed
+  })
+  .catch(error => {
+    console.error('Error fetching hotel data:', error);
+  });
 
 function initializeHomePage() {
   const root = document.getElementsByName('body');
