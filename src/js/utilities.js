@@ -20,18 +20,39 @@ export function getParams(param) {
   return urlParams.get(param); // Return the parameter value
 }
 
-const apiKey = '5da6d7f6efmsh009188dc742150fp1b8341jsn543dea9be0a9'; // Replace with your actual key
+export const fetchHotelsData = async () => {
+  const apiKey = "c8273bc0";
+  const url = `https://my.api.mockaroo.com/wdd330finalproject.json?key=${apiKey}`;
 
-fetch(`https://booking-com.p.rapidapi.com/v1/hotels/facilities?hotel_id=1676161&locale=en-gb`, {
-  method: 'GET',
-  headers: {
-    'x-rapidapi-key': apiKey,
-    'x-rapidapi-host': 'booking-com.p.rapidapi.com'
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`Error: ${response.status} ${response.statusText}`);
+
+    const hotels = await response.json();
+    const hotelList = document.getElementById('hotel-list');
+
+    hotels.forEach(hotel => {
+      const hotelInfo = document.createElement('div');
+      hotelInfo.innerHTML = `
+        <h2>${hotel.hotel_name} (${hotel.star_rating}⭐)</h2>
+        <img src="${hotel.hotel_image}" alt="${hotel.hotel_name}" width="600" />
+        <p><strong>City:</strong> ${hotel.city}</p>
+        <p><strong>Address:</strong> ${hotel.address}</p>
+        <p><strong>Check-in:</strong> ${hotel.check_in}</p>
+        <p><strong>Check-out:</strong> ${hotel.check_out}</p>
+        <p><strong>Amenities:</strong> ${hotel.amenities}</p>
+        <p><strong>Room Types:</strong> ${hotel.room_types}</p>
+        <p><strong>Star Ratings:</strong> ${hotel.star_rating}</p>
+        <p><strong>Price:</strong> $${hotel.price}</p>
+      `;
+      hotelList.appendChild(hotelInfo);
+    });
+
+  } catch (error) {
+    console.error('Failed to fetch hotel data:', error);
   }
-})
-.then(response => response.json()) // Parse JSON response
-.then(data => console.log(data))
-.catch(error => console.error('Error fetching data:', error));
+};
+
 
 function initializeHomePage() {
   const root = document.getElementsByName('body');
