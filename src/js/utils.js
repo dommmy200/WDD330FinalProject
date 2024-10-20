@@ -1,4 +1,3 @@
-
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -21,29 +20,28 @@ export function getParams(param) {
   return urlParams.get(param); // Return the parameter value
 }
 
-
-function initializeHomePage() {
-  const root = document.getElementsByName('body');
-  const h1 = document.createElement('h1');
-  h1.textContent ="Go to Home Page.";
-  const anchor = document.createElement('a');
+export function initializeHomePage() {
+  const body = document.getElementById("body");
+  const h1 = document.createElement("h1");
+  h1.textContent = "Go to Home Page.";
+  const anchor = document.createElement("a");
   anchor.href = "./src/index.html";
   anchor.appendChild(h1);
-  root.appendChild(anchor);
+  body.appendChild(anchor);
 }
 
 export function submitForm() {
   // Handle form submission
-  document.getElementById('hotelSearchForm').addEventListener('submit', (event) => {
-    event.preventDefault();
-    const selectedHotel = document.getElementById('hotel').value;
-    if (selectedHotel) {
-      // Redirect to another page and pass the selected hotel ID as a query parameter
-      window.location.href = `/booking-confirmation/index.html?hotelId=${selectedHotel}`;
-    } else {
-      alert('Please select a hotel!');
-    }
-  });
+  document
+    .getElementById("hotelSearchForm")
+    .addEventListener("submit", (event) => {
+      event.preventDefault();
+      const selectedHotel = document.getElementById("hotel").value;
+      if (selectedHotel) {
+        // Redirect to another page and pass the selected hotel ID as a query parameter
+        window.location.href = `/booking-confirmation/index.html?hotelId=${selectedHotel}`;
+      } else {
+        alert("Please select a hotel!");
+      }
+    });
 }
-
-initializeHomePage();

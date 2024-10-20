@@ -1,20 +1,21 @@
-import { MongoClient } from 'mongodb';
-import { axios } from 'axios';
+import { MongoClient } from "mongodb";
+import { axios } from "axios";
 
 export const fetchHotelsData = async () => {
-    const apiKey = "c8273bc0";
-    const url = `https://my.api.mockaroo.com/wdd330finalproject.json?key=${apiKey}`;
-  
-    try {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error(`Error: ${response.status} ${response.statusText}`);
-  
-      const hotels = await response.json();
-      const hotelList = document.getElementById('hotel-list');
-  
-      hotels.forEach(hotel => {
-        const hotelInfo = document.createElement('div');
-        hotelInfo.innerHTML = `
+  const apiKey = "c8273bc0";
+  const url = `https://my.api.mockaroo.com/wdd330finalproject.json?key=${apiKey}`;
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok)
+      throw new Error(`Error: ${response.status} ${response.statusText}`);
+
+    const hotels = await response.json();
+    const hotelList = document.getElementById("hotel-list");
+
+    hotels.forEach((hotel) => {
+      const hotelInfo = document.createElement("div");
+      hotelInfo.innerHTML = `
           <h2>${hotel.hotel_name} (${hotel.star_rating}⭐)</h2>
           <img src="${hotel.hotel_image}" alt="${hotel.hotel_name}" width="600" />
           <p><strong>City:</strong> ${hotel.city}</p>
@@ -26,21 +27,19 @@ export const fetchHotelsData = async () => {
           <p><strong>Star Ratings:</strong> ${hotel.star_rating}</p>
           <p><strong>Price:</strong> $${hotel.price}</p>
         `;
-        hotelList.appendChild(hotelInfo);
-      });
-  
-    } catch (error) {
-      console.error('Failed to fetch hotel data:', error);
-    }
-  };
-  
+      hotelList.appendChild(hotelInfo);
+    });
+  } catch (error) {
+    console.error("Failed to fetch hotel data:", error);
+  }
+};
 
-
-
-const MONGO_URI = 'mongodb+srv://constantx003:qN807YxSYdNCP11n@wdd330finalproject-db.01sfc.mongodb.net/?retryWrites=true&w=majority&appName=wdd330finalProject-db'; // MongoDB url
-const DATABASE_NAME = 'hotelDB';
-const COLLECTION_NAME = 'hotels';
-const MOCKAROO_URL = 'https://api.mockaroo.com/api/53c3fbf0?count=1000&key=c8273bc0'; // My Mockaroo key
+const MONGO_URI =
+  "mongodb+srv://constantx003:qN807YxSYdNCP11n@wdd330finalproject-db.01sfc.mongodb.net/?retryWrites=true&w=majority&appName=wdd330finalProject-db"; // MongoDB url
+const DATABASE_NAME = "hotelDB";
+const COLLECTION_NAME = "hotels";
+const MOCKAROO_URL =
+  "https://api.mockaroo.com/api/53c3fbf0?count=1000&key=c8273bc0"; // My Mockaroo key
 
 export async function fetchAndStoreData() {
   const client = new MongoClient(MONGO_URI, {
@@ -55,7 +54,7 @@ export async function fetchAndStoreData() {
 
     // Connect to MongoDB
     await client.connect();
-    console.log('Connected to MongoDB');
+    console.log("Connected to MongoDB");
 
     const db = client.db(DATABASE_NAME);
     const collection = db.collection(COLLECTION_NAME);
@@ -63,9 +62,8 @@ export async function fetchAndStoreData() {
     // Insert Mockaroo data into MongoDB
     const result = await collection.insertMany(mockData);
     console.log(`${result.insertedCount} documents inserted.`);
-
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
   } finally {
     // Close the MongoDB connection
     await client.close();
