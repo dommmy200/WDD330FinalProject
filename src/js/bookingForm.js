@@ -1,4 +1,6 @@
 import { searchHotels } from "./searchForm";
+import { populateHotels } from "./hotelStore";
+import { submitForm } from "./utilities";
 
 export function validateBookingForm() {
     // Check required fields
@@ -34,3 +36,21 @@ searchForm.addEventListener('submit', (event) => {
   event.preventDefault(); // Prevent default form submission behavior
   searchHotels(); // Call the searchHotels function
 });
+
+// export function submitForm() {
+//   const hotelSearch = document.getElementById('hotelSearch');
+//   const hotelSelect = document.getElementById('hotel');
+
+//   hotelSearch.addEventListener('input', () => {
+//     const searchTerm = hotelSearch.value.toLowerCase();
+
+//     hotelSelect.options.forEach(option => {
+//       const optionText = option.text.toLowerCase();
+//       option.style.display = optionText.includes(searchTerm) ? 'block' : 'none';
+//     });
+//   });
+// }
+
+submitForm();
+// Call the function to populate hotels when the page loads
+window.onload = populateHotels;

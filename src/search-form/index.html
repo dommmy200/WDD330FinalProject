@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./js/bookingForm.js" type="module"></script>
+    <script src="../js/bookingForm.js" type="module"></script>
+    <script src="../js/bookingForm.js" type="module"></script>
     <title>Hotel Search</title>
 </head>
 <body>
@@ -65,5 +66,25 @@
   
       <input type="submit" value="Search Hotels">
     </form>
+    <h1>Select a Hotel</h1>
+
+  <form id="hotelForm">
+    <label for="hotel">Choose a hotel:</label>
+    <input type="text" id="hotelSearch" placeholder="Search for a hotel">
+    <select id="hotel" name="hotel">
+      <option value="">--Select a Hotel--</option>
+    </select>
+    <button type="submit">Submit</button>
+  </form>
+
+  <div class="dropdown">
+    <!-- <input type="text" id="hotelSearch" placeholder="Search for a hotel"> -->
+    <select id="hotel" name="hotel">
+      <option value="">--Select a Hotel--</option>
+      <option value="hotel1">Hotel 1</option>
+      <option value="hotel2">Hotel 2</option>
+      <option value="hotel3">Hotel 3</option>
+    </select>
+  </div>
 </body>
 </html>

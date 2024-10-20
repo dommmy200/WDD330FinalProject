@@ -1,3 +1,4 @@
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -20,39 +21,6 @@ export function getParams(param) {
   return urlParams.get(param); // Return the parameter value
 }
 
-export const fetchHotelsData = async () => {
-  const apiKey = "c8273bc0";
-  const url = `https://my.api.mockaroo.com/wdd330finalproject.json?key=${apiKey}`;
-
-  try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`Error: ${response.status} ${response.statusText}`);
-
-    const hotels = await response.json();
-    const hotelList = document.getElementById('hotel-list');
-
-    hotels.forEach(hotel => {
-      const hotelInfo = document.createElement('div');
-      hotelInfo.innerHTML = `
-        <h2>${hotel.hotel_name} (${hotel.star_rating}⭐)</h2>
-        <img src="${hotel.hotel_image}" alt="${hotel.hotel_name}" width="600" />
-        <p><strong>City:</strong> ${hotel.city}</p>
-        <p><strong>Address:</strong> ${hotel.address}</p>
-        <p><strong>Check-in:</strong> ${hotel.check_in}</p>
-        <p><strong>Check-out:</strong> ${hotel.check_out}</p>
-        <p><strong>Amenities:</strong> ${hotel.amenities}</p>
-        <p><strong>Room Types:</strong> ${hotel.room_types}</p>
-        <p><strong>Star Ratings:</strong> ${hotel.star_rating}</p>
-        <p><strong>Price:</strong> $${hotel.price}</p>
-      `;
-      hotelList.appendChild(hotelInfo);
-    });
-
-  } catch (error) {
-    console.error('Failed to fetch hotel data:', error);
-  }
-};
-
 
 function initializeHomePage() {
   const root = document.getElementsByName('body');
@@ -63,5 +31,19 @@ function initializeHomePage() {
   anchor.appendChild(h1);
   root.appendChild(anchor);
 }
-initializeHomePage();
 
+export function submitForm() {
+  // Handle form submission
+  document.getElementById('hotelSearchForm').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const selectedHotel = document.getElementById('hotel').value;
+    if (selectedHotel) {
+      // Redirect to another page and pass the selected hotel ID as a query parameter
+      window.location.href = `/booking-confirmation/index.html?hotelId=${selectedHotel}`;
+    } else {
+      alert('Please select a hotel!');
+    }
+  });
+}
+
+initializeHomePage();
