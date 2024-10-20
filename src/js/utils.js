@@ -21,13 +21,13 @@ export function getParams(param) {
 }
 
 export function initializeHomePage() {
-  const body = document.getElementById("body");
+  const div = document.getElementById("my-div");
   const h1 = document.createElement("h1");
   h1.textContent = "Go to Home Page.";
   const anchor = document.createElement("a");
   anchor.href = "./src/index.html";
   anchor.appendChild(h1);
-  body.appendChild(anchor);
+  div.appendChild(anchor);
 }
 
 export function submitForm() {
@@ -39,7 +39,7 @@ export function submitForm() {
       const selectedHotel = document.getElementById("hotel").value;
       if (selectedHotel) {
         // Redirect to another page and pass the selected hotel ID as a query parameter
-        window.location.href = `/booking-confirmation/index.html?hotelId=${selectedHotel}`;
+        window.location.href = `/booking-confirmation/confirm.html?hotelId=${selectedHotel}`;
       } else {
         alert("Please select a hotel!");
       }

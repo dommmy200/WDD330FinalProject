@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="../js/bookingForm.js" type="module"></script>
-    <script src="../js/bookingForm.js" type="module"></script>
     <title>Hotel Search</title>
   </head>
   <body>
@@ -75,11 +74,11 @@
         <option value="5">5 Stars</option></select
       ><br /><br />
 
-      <label for="proximity">Proximity:</label>
+      <!-- <label for="proximity">Proximity:</label>
       <input type="text" id="proximity" name="proximity" /><br /><br />
 
       <label for="hotelChain">Hotel Chain:</label>
-      <input type="text" id="hotelChain" name="hotelChain" /><br /><br />
+      <input type="text" id="hotelChain" name="hotelChain" /><br /><br /> -->
 
       <label for="specialRequest">Special Request:</label>
       <textarea id="specialRequest" name="specialRequest"></textarea
@@ -87,9 +86,8 @@
 
       <input type="submit" value="Search Hotels" />
     </form>
-    <h1>Select a Hotel</h1>
-
-    <form id="hotelForm">
+    
+    <form id="hotelForm" class="hide">
       <label for="hotel">Choose a hotel:</label>
       <input type="text" id="hotelSearch" placeholder="Search for a hotel" />
       <select id="hotel" name="hotel">
@@ -98,14 +96,14 @@
       <button type="submit">Submit</button>
     </form>
 
-    <div class="dropdown">
-      <!-- <input type="text" id="hotelSearch" placeholder="Search for a hotel"> -->
+    <!-- <div class="dropdown">
+      <input type="text" id="hotelSearch" placeholder="Search for a hotel">
       <select id="hotel" name="hotel">
         <option value="">--Select a Hotel--</option>
         <option value="hotel1">Hotel 1</option>
         <option value="hotel2">Hotel 2</option>
         <option value="hotel3">Hotel 3</option>
       </select>
-    </div>
+    </div> -->
   </body>
 </html>

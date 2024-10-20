@@ -1,5 +1,6 @@
 import { MongoClient } from "mongodb";
 import { axios } from "axios";
+import { express } from "express";
 
 export const fetchHotelsData = async () => {
   const apiKey = "c8273bc0";
@@ -69,5 +70,43 @@ export async function fetchAndStoreData() {
     await client.close();
   }
 }
+
+// Replace <username>, <password>, <cluster>, and <dbname> with your MongoDB Atlas details
+//const MONGO_URI = 'mongodb+srv://<username>:<password>@cluster.mongodb.net/<dbname>?retryWrites=true&w=majority';
+//const DATABASE_NAME = 'hotelDB';  // Example: Use the same database name you used during Mockaroo insertion
+//const COLLECTION_NAME = 'hotels'; // Example: Use the same collection name
+
+const app = express();
+const PORT = 3000;
+
+// Endpoint to fetch hotels data
+app.get("/hotels", async (req, res) => {
+  const client = new MongoClient(MONGO_URI, { useUnifiedTopology: true });
+
+  try {
+    await client.connect();
+    console.log("Connected to MongoDB Atlas");
+
+    const db = client.db(DATABASE_NAME);
+    const collection = db.collection(COLLECTION_NAME);
+
+    // Fetch all documents from the hotels collection
+    const hotels = await collection.find({}).toArray();
+
+    // Send the data as a JSON response
+    res.json(hotels);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    res.status(500).send("Failed to retrieve data");
+  } finally {
+    await client.close();
+    console.log("MongoDB connection closed");
+  }
+});
+
+// Start the server
+app.listen(PORT, () =>
+  console.log(`Server running on http://localhost:${PORT}`),
+);
 
 fetchAndStoreData(); // export this to the right .js file
