@@ -25,7 +25,7 @@ export function getParams(param) {
 function initializeHomePage() {
   const root = document.getElementsByName('body');
   const h1 = document.createElement('h1');
-  h1.textContent("Go to Home Page.");
+  h1.textContent ="Go to Home Page.";
   const anchor = document.createElement('a');
   anchor.href = "./src/index.html";
   anchor.appendChild(h1);
