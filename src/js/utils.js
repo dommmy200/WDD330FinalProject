@@ -170,46 +170,49 @@ export async function fetchMockarooData() {
             matchesAmenities
           );
         });
-        console.log("Manual filtering: ", filteredHotels);
+        // console.log("Manual filtering: ", filteredHotels);
         // console.log("Filtered: ", matchesAmenities);
         // return matchesStarRating && matchesPrice && matchesGuests && matchesRooms && matchesAmenities;
       // });
-      // console.log(filteredHotels);
-      displayHotels(filteredHotels);
+      // Assume 'filteredHotels' is the array of hotel objects you want to display
+      localStorage.setItem('filteredHotels', JSON.stringify(filteredHotels));
+      window.location.href = '../search-result/results.html'; // Redirect to the new page
+
+      // displayHotels(filteredHotels);
     } catch (error) {
       console.error("Error fetching data from Mockaroo:", error);
     }
   });
 }
 // Display the fetched data in the HTML
-function displayHotels(hotels) {
-  const hotelsDiv = document.getElementById("hotels");
+// function displayHotels(hotels) {
+//   const hotelsDiv = document.getElementById("hotels");
 
-  // Slice the array to get only the first 5 hotels
-  // const firstFiveHotels = hotels.slice(0, 5);
+//   // Slice the array to get only the first 5 hotels
+//   // const firstFiveHotels = hotels.slice(0, 5);
   
-  hotelsDiv.innerHTML = hotels.slice(0, 5)
-    .map(
-      (hotel) => {
-        const amenities = Array.isArray(hotel.amenities 
-          ? hotel.amenities.join(', ') : hotel.amenities 
-          || "No amenities available!");
-        const room_types = Array.isArray(hotel.room 
-          ? hotel.room.join(', ') : hotel.room 
-          || "Only one available!")
-        return `
-          <div>
-            <h2>${hotel.hotel_name}</h2>
-            <img class="h-image" src="${hotel.hotel_image}" alt="${hotel.hotel_name}" loading="lazy" >
-            <p>City: ${hotel.city}</p>
-            <p>Address: ${hotel.address}</p>
-            <p>Check-in: ${hotel.check_in}</p>
-            <p>Check-out: ${hotel.check_out}</p>
-            <p>Guest: ${hotel.guest}</p>
-            <p>Amenities: ${amenities}</p>
-            <p>Room Types: ${room_types}</p>
-            <p>Star Rating: ${hotel.rating}</p>
-            <p>Price: $${hotel.price}</p>
-          </div>`;})
-        .join(', ');
-}
+//   hotelsDiv.innerHTML = hotels.slice(0, 5)
+//     .map(
+//       (hotel) => {
+//         const amenities = Array.isArray(hotel.amenities 
+//           ? hotel.amenities.join(', ') : hotel.amenities 
+//           || "No amenities available!");
+//         const room_types = Array.isArray(hotel.room 
+//           ? hotel.room.join(', ') : hotel.room 
+//           || "Only one available!")
+//         return `
+//           <div>
+//             <h2>${hotel.hotel_name}</h2>
+//             <img class="h-image" src="${hotel.hotel_image}" alt="${hotel.hotel_name}" loading="lazy" >
+//             <p>City: ${hotel.city}</p>
+//             <p>Address: ${hotel.address}</p>
+//             <p>Check-in: ${hotel.check_in}</p>
+//             <p>Check-out: ${hotel.check_out}</p>
+//             <p>Guest: ${hotel.guest}</p>
+//             <p>Amenities: ${amenities}</p>
+//             <p>Room Types: ${room_types}</p>
+//             <p>Star Rating: ${hotel.rating}</p>
+//             <p>Price: $${hotel.price}</p>
+//           </div>`;})
+//         .join(', ');
+// }
