@@ -1,4 +1,4 @@
-import { initializeHomePage } from "./utils";
+import { initializeHomePage, fetchMockarooData } from "./utils";
 
 console.log("Hello world!");
 
@@ -19,5 +19,5 @@ export async function fetchHotels() {
     console.error("Error fetching hotels:", error);
   }
 }
-
+fetchMockarooData();
 initializeHomePage();
