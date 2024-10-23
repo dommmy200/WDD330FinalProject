@@ -20,4 +20,5 @@ body {
 .final-project a {
     color: white;
     border: 2px solid red;
+    text-decoration: none;
 }
