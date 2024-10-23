@@ -27,3 +27,24 @@ body {
     border: 2px solid red;
     text-decoration: none;
 }
+body {
+    font-size: 18px;
+    padding: 20px;
+  }
+  
+  /* Mobile styles */
+@media (max-width: 768px) {
+body {
+    font-size: 16px;
+    padding: 10px;
+}
+
+/* Example of styling a navigation menu differently on mobile */
+nav {
+    display: none;
+}
+
+.mobile-nav {
+    display: block;
+}
+}

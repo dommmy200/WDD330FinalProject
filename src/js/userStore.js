@@ -32,3 +32,37 @@ app.get("/hotels", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
+export function setUserProfile() {
+  const form = document.getElementById('booking-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    try {
+      const fname = document.getElementById('name');
+      const lname = document.getElementById('surname');
+      const oname = document.getElementById('othername');
+      const age = document.getElementById('age');
+      const email = document.getElementById('email');
+      const phone = document.getElementById('phone-number');
+      const remark = document.getElementById('remark');
+
+      const profileArray = [];
+      const profileObject = {
+        fname: `${fname}`,
+        lname: `${lname}`,
+        oname: `${oname}`,
+        age: `${age}`,
+        email: `${email}`,
+        phone: `${phone}`,
+        remark: `${remark}`,
+      };
+      profileArray.push(profileObject);
+
+      localStorage.setItem('userProfile', JSON.stringify('userProfile'));
+      alert('Redirecting to Payment Page!');
+      window.location.href = '../booking-confirmation/';
+    } catch (error){
+      console.log('Error: ', error); //console.error("Error fetching hotels:", error);
+    }
+  });
+}
+setUserProfile();
