@@ -1,10 +1,22 @@
+body {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100vh;
+}
 .final-project {
-    width: 200px;
-    height: 200px;
+    width: 70%;
+    height: auto;
+    display: flex;
+
 }
 .final-project nav {
     width: 180px;
     height: inherit;
     background-color:darkolivegreen ;
     border-radius: 10px;
+}
+.final-project nav a {
+    color: white;
 }
