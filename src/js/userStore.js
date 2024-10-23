@@ -57,3 +57,4 @@ export function userProfile() {
     localStorage.setItem('userProfile', JSON.stringify(profileArray))
   });
 }
+userProfile();
