@@ -29,53 +29,22 @@
 // });
 
 // Start the server
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server running on http://localhost:${PORT}`);
+// });
 
-export function setUserProfile() {
-  const form = document.getElementById('booking-form').addEventListener('submit', (e) => {
+export function userProfile() {
+  document.getElementById("userForm").addEventListener("submit", (e) => {
     e.preventDefault();
     try {
-      const fname = document.getElementById('name');
-      const lname = document.getElementById('surname');
-      const oname = document.getElementById('othername');
+      const profileArray = [];
+      const fName = document.getElementById('name');
+      const lName = document.getElementById('surname');
+      const oName = document.getElementById('othername');
+      const gender = document.getElementById('gender');
       const age = document.getElementById('age');
       const email = document.getElementById('email');
-      const phone = document.getElementById('phone-number');
-      const remark = document.getElementById('remark');
-
-      const profileArray = [];
-      const profileObject = {
-        fname: `${fname}`,
-        lname: `${lname}`,
-        oname: `${oname}`,
-        age: `${age}`,
-        email: `${email}`,
-        phone: `${phone}`,
-        remark: `${remark}`,
-      };
-      profileArray.push(profileObject);
-
-      localStorage.setItem('userProfile', JSON.stringify(profileArray));
-      alert('Redirecting to Payment Page!');
-      window.location.href = '../booking-confirmation/';
-    } catch (error){
-      console.log('Error: ', error); //console.error(error);
-    }
-  });
-}
-setUserProfile();
-export function userProfile() {
-  document.getElementById('userForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const profileArray = [];
-    const fName = document.getElementById('name');
-    const lName = document.getElementById('surname');
-    const oName = document.getElementById('othername');
-    const gender = document.getElementById('gender');
-    const email = document.getElementById('email');
-    const phone = document.getElementById('phonenumber');
+      const phone = document.getElementById('phonenumber');
 
     const profileObj = {
       fname: fName,
