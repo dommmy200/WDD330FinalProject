@@ -1,0 +1,10 @@
+.final-project {
+    width: 200px;
+    height: 200px;
+}
+.final-project nav {
+    width: 180px;
+    height: inherit;
+    background-color:darkolivegreen ;
+    border-radius: 10px;
+}
