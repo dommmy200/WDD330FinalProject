@@ -36,25 +36,31 @@
 export function userProfile() {
   document.getElementById('userForm').addEventListener('submit', (e) => {
     e.preventDefault();
-    const profileArray = [];
-    const fName = document.getElementById('name');
-    const lName = document.getElementById('surname');
-    const oName = document.getElementById('othername');
-    const gender = document.getElementById('gender');
-    const email = document.getElementById('email');
-    const phone = document.getElementById('phonenumber');
+    try {
+      const profileArray = [];
+      const fName = document.getElementById('name');
+      const lName = document.getElementById('surname');
+      const oName = document.getElementById('othername');
+      const gender = document.getElementById('gender');
+      const age = document.getElementById('age');
+      const email = document.getElementById('email');
+      const phone = document.getElementById('phonenumber');
 
-    const profileObj = {
-      fname: fName,
-      lName: lName,
-      oName: oName,
-      gender: gender,
-      email: email,
-      phone: phone,
-    };
-    profileArray.push(profileObj);
+      const profileObj = {
+        fname: fName,
+        lName: lName,
+        oName: oName,
+        age: age,
+        gender: gender,
+        email: email,
+        phone: phone,
+      };
+      profileArray.push(profileObj);
 
-    localStorage.setItem('userProfile', JSON.stringify(profileArray))
+      localStorage.setItem('userProfile', JSON.stringify(profileArray))
+    } catch (error){
+      console.log('Error:', error);
+    }
   });
 }
 userProfile();
