@@ -1,7 +1,7 @@
-import { fetchHotelsData } from "./utils";
-import { fetchHotels } from "./main";
+// import { fetchHotelsData } from "./utils";
+// import { fetchHotels } from "./main";
 
-fetchHotelsData();
+// fetchHotelsData();
 
 // Fetch and display the hotels when the page loads
-fetchHotels();
+// fetchHotels();

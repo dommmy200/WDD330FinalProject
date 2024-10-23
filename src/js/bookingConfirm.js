@@ -5,25 +5,25 @@ document.addEventListener('DOMContentLoaded', () => {
   
     if (selectedHotel) {
       hotelDetailsDiv.innerHTML = `
-        <h2>${selectedHotel.name}</h2>
+        <h2>${selectedHotel.hotel_name}</h2>
         <p>Location: ${selectedHotel.city}</p>
-        <p>Rating: ${selectedHotel.star_rating} stars</p>
+        <p>Rating: ${selectedHotel.rating} stars</p>
         <p>Price per night: $${selectedHotel.price}</p>
       `;
     } else {
       hotelDetailsDiv.innerHTML = '<p>Error: No hotel selected.</p>';
     }
   
-    // Event listener for 'Back to Hotels' button
+    // Event listener to go 'Back to Hotels' button
     document.getElementById('back-to-hotels').addEventListener('click', () => {
-      window.location.href = 'hotels.html'; // Go back to the hotels list
+      window.location.href = '../search-result/result.html'; // Go back to selected hotels list
     });
   
-    // Event listener for 'Confirm Booking' button
-    document.getElementById('confirm-booking').addEventListener('click', () => {
-      alert('Booking confirmed! Thank you.');
-      // Redirect to a confirmation page or homepage
-      window.location.href = '../index.html';
+    // Event listener for 'Confirm Booking and Redirection' button
+    document.getElementById('user-profile').addEventListener('click', () => {
+      alert('Booking confirmed! Thank you.'+'\nYou may enter personal details now.');
+      // Redirect to enter user profile
+      window.location.href = '../user-profile/profile.html';
     });
   });
   

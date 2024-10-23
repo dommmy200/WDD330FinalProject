@@ -22,15 +22,15 @@ export function getParams(param) {
   return urlParams.get(param); // Return the parameter value
 }
 
-export function initializeHomePage() {
-  const div = document.getElementById("my-div");
-  const h1 = document.createElement("h1");
-  h1.textContent = "Go to Home Page.";
-  const anchor = document.createElement("a");
-  anchor.href = "./src/index.html";
-  anchor.appendChild(h1);
-  div.appendChild(anchor);
-}
+// export function initializeHomePage() {
+//   const div = document.getElementById("my-div");
+//   const h1 = document.createElement("h1");
+//   h1.textContent = "Go to Home Page.";
+//   const anchor = document.createElement("a");
+//   anchor.href = "./src/index.html";
+//   anchor.appendChild(h1);
+//   div.appendChild(anchor);
+// }
 
 // export function submitForm() {
 //   // Handle form submission
@@ -102,15 +102,15 @@ export async function fetchMockarooData() {
   document.getElementById('hotelSearchForm').addEventListener('submit', async function (e) {
     e.preventDefault(); // Prevent form from reloading the page
     // Get user input values
-    //const city = document.getElementById('city').value.toLowerCase();
-    const guests = document.getElementById('guests').value;
+    const city = document.getElementById('city').value.toLowerCase().slice(0, 3);
+    // const guests = document.getElementById('guests').value;
     const rating = document.getElementById('rating').value;
     const maxPrice = document.getElementById('budget').value;
-    const rooms = document.getElementById('rooms').value;
+    // const rooms = document.getElementById('rooms').value;
     // Get selected amenities from checkboxes
-    const amenities = document.querySelectorAll('input[name="amenities"]:checked');
-    const selectedAmenities = Array.from(amenities)
-    .map(checkbox => checkbox.value);
+    // const amenities = document.querySelectorAll('input[name="amenities"]:checked');
+    // const selectedAmenities = Array.from(amenities)
+    // .map(checkbox => checkbox.value);
     // console.log("User input: Guests", guests," & Hotel Rating", rating);
     try {
       const response = await fetch(apiUrl, {
@@ -129,23 +129,23 @@ export async function fetchMockarooData() {
       }
        const rate = Number(rating);
        const mPrice = Number(maxPrice);
-       const guestS = Number(guests);
+      //  const guestS = Number(guests);
       // console.log("Hotels: ", hotels.slice(0, 10));
       // Filter hotels based on user input
       const filteredHotels = hotels.filter(hotel => {
-        //const matchesCity = !city || hotel.city.toLowerCase().includes(city);
-        const rooms_ = hotel.room[0].toLowerCase();
-        const matchesStarRating = !rate || hotel.rating === rate;
+        const matchesCity = !city || hotel.city.toLowerCase().slice(0, 3).includes(city);
+        // const rooms_ = hotel.room[0].toLowerCase();
+        const matchesStarRating = !rate || hotel.rating <= rate;
         const matchesPrice = !mPrice || hotel.price <= mPrice;
-        const matchesGuests = !guestS || hotel.guest === guestS;
-        const matchesRooms = !rooms || rooms_ === rooms;
-        const matchesAmenities = selectedAmenities.every(amenity => {
-          const hotelArray = hotel.amenities;
-          const newAmenity = amenity.slice(0, 3);
-          const NewHotelArray = hotelArray.map(x => x.toLowerCase().slice(0,3));
-          return NewHotelArray.includes(newAmenity);
-          }
-        );
+        // const matchesGuests = !guestS || hotel.guest === guestS;
+        // const matchesRooms = !rooms || rooms_ === rooms;
+        // const matchesAmenities = selectedAmenities.every(amenity => {
+        //   const hotelArray = hotel.amenities;
+        //   const newAmenity = amenity.slice(0, 3);
+        //   const NewHotelArray = hotelArray.map(x => x.toLowerCase().slice(0,3));
+        //   return NewHotelArray.includes(newAmenity);
+          // }
+        // );
         // const filteredHotels = [];
         // for (let hotel of hotels.slice(0, 10)) {
         //   if (hotel.rating == rating || hotel.price <= maxPrice) {
@@ -165,9 +165,10 @@ export async function fetchMockarooData() {
           return (
             matchesStarRating &&
             matchesPrice &&
-            matchesGuests &&
-            matchesRooms &&
-            matchesAmenities
+            matchesCity
+            // matchesGuests &&
+            // matchesRooms &&
+            // matchesAmenities
           );
         });
         // console.log("Manual filtering: ", filteredHotels);

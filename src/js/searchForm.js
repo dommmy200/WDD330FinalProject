@@ -1,4 +1,4 @@
-import { fetchHotels } from "./main";
+// import { fetchHotels } from "./main";
 
 // export function searchHotels() {
 //   const formData = new FormData(document.getElementById("hotelSearchForm"));
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hotelDiv.classList.add('hotel-card'); // Add CSS class for styling
   
         hotelDiv.innerHTML = `
-          <h2>${hotel.name}</h2>
+          <h2>${hotel.hotel_name}</h2>
           <img class="h-image" src="${hotel.hotel_image}" alt="${hotel.hotel_name}" loading="lazy" >
           <p>Location: ${hotel.city}</p>
           <p>Rating: ${hotel.rating} stars</p>
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const hotelIndex = e.target.dataset.index;
           // Store selected hotel in localStorage and redirect to booking page
           localStorage.setItem('selectedHotel', JSON.stringify(hotels[hotelIndex]));
-          window.location.href = 'booking.html'; // Redirect to booking page
+          window.location.href = '../booking-confirmation/confirm.html'; // Redirect to booking page
         });
       });
     } else {
@@ -83,4 +83,4 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
 
-fetchHotels();
+// fetchHotels();
