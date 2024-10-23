@@ -1,6 +1,6 @@
 //import { searchHotels } from "./searchForm";
-import { populateHotels } from "./hotelStore";
-import { submitForm } from "./utils";
+// import { populateHotels } from "./hotelStore";
+// import { submitForm } from "./utils";
 
 export function validateBookingForm() {
   // Check required fields
@@ -60,6 +60,6 @@ function isValidDate(dateString) {
 //   });
 // }
 
-submitForm();
+// submitForm();
 // Call the function to populate hotels when the page loads
-window.onload = populateHotels;
+// window.onload = populateHotels;
