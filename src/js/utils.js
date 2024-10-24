@@ -22,81 +22,6 @@ export function getParams(param) {
   return urlParams.get(param); // Return the parameter value
 }
 
-// export function initializeHomePage() {
-//   const div = document.getElementById("my-div");
-//   const h1 = document.createElement("h1");
-//   h1.textContent = "Go to Home Page.";
-//   const anchor = document.createElement("a");
-//   anchor.href = "./src/index.html";
-//   anchor.appendChild(h1);
-//   div.appendChild(anchor);
-// }
-
-// export function submitForm() {
-//   // Handle form submission
-//   document
-//     .getElementById("hotelSearchForm")
-//     .addEventListener("submit", (event) => {
-//       event.preventDefault();
-//       const selectedHotel = document.getElementById("hotel").value;
-//       if (selectedHotel) {
-//         // Redirect to another page and pass the selected hotel ID as a query parameter
-//         window.location.href = `/booking-confirmation/confirm.html?hotelId=${selectedHotel}`;
-//       } else {
-//         alert("Please select a hotel!");
-//       }
-//     });
-// }
-// export function submitUserSelections() {
-//   const form = document.getElementById("hotelSearchForm");
-
-//   form.addEventListener("submit", async (event) => {
-//     event.preventDefault();
-
-//     const city = document.getElementById("city").value;
-//     const checkin = document.getElementById("checkin").value;
-//     const checkout = document.getElementById("checkout").value;
-//     const guests = document.getElementById("guests").value;
-//     const budget = document.getElementById("budget").value;
-//     const amenities = Array.from(
-//       document.querySelectorAll("#amenities input:checked"),
-//     ).map((checkbox) => checkbox.value);
-//     const starRating = document.getElementById("rating").value;
-//     const rooms = document.getElementById("rooms").value;
-//     const request = document.getElementById("request").value;
-//     // Make API call to your MongoDB backend
-//     const response = await fetch("/search-hotels", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({
-//         city,
-//         checkin,
-//         checkout,
-//         guests,
-//         budget,
-//         amenities,
-//         starRating,
-//         rooms,
-//         request,
-//       }),
-//     });
-
-//     const data = await response.json();
-
-//     // Handle the response, e.g., redirect to a results page with hotel IDs
-//     if (data.success) {
-//       const hotelIds = data.hotelIds;
-//       // Redirect to another page with hotelIds as query parameters
-//       window.location.href = `/hotel-results?hotelIds=${hotelIds.join(",")}`;
-//     } else {
-//       // Handle errors or display a message to the user
-//       console.error("Error searching for hotels:", data.error);
-//     }
-//   });
-// }
-
 // Fetch 5 random hotel entries from Mockaroo
 export async function fetchMockarooData() {
   document
@@ -143,42 +68,11 @@ export async function fetchMockarooData() {
           // const rooms_ = hotel.room[0].toLowerCase();
           const matchesStarRating = !rate || hotel.rating <= rate;
           const matchesPrice = !mPrice || hotel.price <= mPrice;
-          // const matchesGuests = !guestS || hotel.guest === guestS;
-          // const matchesRooms = !rooms || rooms_ === rooms;
-          // const matchesAmenities = selectedAmenities.every(amenity => {
-          //   const hotelArray = hotel.amenities;
-          //   const newAmenity = amenity.slice(0, 3);
-          //   const NewHotelArray = hotelArray.map(x => x.toLowerCase().slice(0,3));
-          //   return NewHotelArray.includes(newAmenity);
-          // }
-          // );
-          // const filteredHotels = [];
-          // for (let hotel of hotels.slice(0, 10)) {
-          //   if (hotel.rating == rating || hotel.price <= maxPrice) {
-          //     filteredHotel.push(hotel);
-          //   }
-          // }
-          // const filteredHotels = hotels.filter(hotel => {
-          //   const matchesStarRating = !rating || hotel.star_rating == rating;
-          //   const matchesPrice = !maxPrice || hotel.price_per_night <= maxPrice;
-          //   const matchesGuests = !guests || hotel.guests == guests;
-          //   const matchesRooms = !rooms || hotel.room_types.includes(rooms);
-
-          //   const matchesAmenities = selectedAmenities.every(amenity =>
-          //     Array.isArray(hotel.amenities) && hotel.amenities.includes(amenity)
-          //   );
 
           return (
             matchesStarRating && matchesPrice && matchesCity
-            // matchesGuests &&
-            // matchesRooms &&
-            // matchesAmenities
           );
         });
-        // console.log("Manual filtering: ", filteredHotels);
-        // console.log("Filtered: ", matchesAmenities);
-        // return matchesStarRating && matchesPrice && matchesGuests && matchesRooms && matchesAmenities;
-        // });
         // Assume 'filteredHotels' is the array of hotel objects you want to display
         localStorage.setItem("filteredHotels", JSON.stringify(filteredHotels));
         window.location.href = "../search-result/results.html"; // Redirect to the new page
