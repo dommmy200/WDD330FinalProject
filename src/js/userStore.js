@@ -49,17 +49,13 @@ function userProfile() {
         },
         status: "false",
       };
-      // Store in local database
-      //const filePath = "../public/user-profile.json";
-      writeToJsonFile(profileToDB)
-      .then(result => console.log('Card added successfully: ', result))
-      .catch(error => console.error('Error adding card: ', error));
-      //Store in local storage
-      localStorage.setItem("userProfile", JSON.stringify(profileObj));
-      alert("Thank you!\n\nConfirm your booking.");
-      window.location.href = "../booking-confirmation/booking-confirmation.html";
-    } catch (error) {
-      console.log("Error:", error);
+      profileArray.push(profileObject);
+
+      localStorage.setItem('userProfile', JSON.stringify(profileArray));
+      alert('Redirecting to Payment Page!');
+      window.location.href = '../booking-confirmation/';
+    } catch (error){
+      console.log('Error: ', error); //console.error(error);
     }
   });
 }
