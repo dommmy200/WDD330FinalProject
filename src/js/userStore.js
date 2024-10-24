@@ -38,14 +38,13 @@ export function userProfile() {
     e.preventDefault();
     try {
       const profileArray = [];
-      const fName = document.getElementById("firstname").value;
+      const fName = document.getElementById("name").value;
       const lName = document.getElementById("surname").value;
       const oName = document.getElementById("othername").value;
       const gender = document.getElementById("gender").value;
       const age = document.getElementById("age").value;
       const email = document.getElementById("email").value;
       const phone = document.getElementById("phone").value;
-      const remark = document.getElementById("remark").value;
 
       const profileObj = {
         fname: `${fName}`,
@@ -55,7 +54,6 @@ export function userProfile() {
         gender: `${gender}`,
         email: `${email}`,
         phone: `${phone}`,
-        remark: `${remark}`,
       };
       profileArray.push(profileObj);
 
