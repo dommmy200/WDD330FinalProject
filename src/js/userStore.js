@@ -58,6 +58,8 @@ export function userProfile() {
       profileArray.push(profileObj);
 
       localStorage.setItem("userProfile", JSON.stringify(profileArray));
+      alert('Thank You!\n\nRedirecting to make payment.');
+      window.location.href = '../booking-confirmation/payment.html';
     } catch (error) {
       console.log("Error:", error);
     }
