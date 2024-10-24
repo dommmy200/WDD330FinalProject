@@ -57,11 +57,11 @@ export function setUserProfile() {
       };
       profileArray.push(profileObject);
 
-      localStorage.setItem('userProfile', JSON.stringify('userProfile'));
+      localStorage.setItem('userProfile', JSON.stringify(profileArray));
       alert('Redirecting to Payment Page!');
       window.location.href = '../booking-confirmation/';
     } catch (error){
-      console.log('Error: ', error); //console.error("Error fetching hotels:", error);
+      console.log('Error: ', error); //console.error(error);
     }
   });
 }
