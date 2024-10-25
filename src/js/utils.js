@@ -70,9 +70,7 @@ export async function fetchMockarooData() {
           const matchesStarRating = !rate || hotel.rating <= rate;
           const matchesPrice = !mPrice || hotel.price <= mPrice;
 
-          return (
-            matchesStarRating && matchesPrice && matchesCity
-          );
+          return matchesStarRating && matchesPrice && matchesCity;
         });
         // Assume 'filteredHotels' is the array of hotel objects you want to display
         localStorage.setItem("filteredHotels", JSON.stringify(filteredHotels));
@@ -86,7 +84,7 @@ export async function fetchMockarooData() {
 }
 
 function hotelNameAmount(name, amount, selected) {
-  if(!name==selected.hotel_name && amount==selected.hotel_amount) {
+  if (!name == selected.hotel_name && amount == selected.hotel_amount) {
     return false;
   }
   return true;
@@ -98,37 +96,38 @@ function userAndMockData(fromStorage, fromCard) {
 
 export async function ValidatePayments() {
   const mockedData = await loadMockedData();
-  const selectedHotel = JSON.parse(localStorage.getItem('selectedHotel'));
+  const selectedHotel = JSON.parse(localStorage.getItem("selectedHotel"));
 
   const hotelName = selectedHotel.hotel_name;
   const hotelAmount = selectedHotel.hotel_amount;
 
-  const cardNumber = document.getElementById('card-number').value;
-  const expirationDate = document.getElementById('expiration-date').value;
-  const cvv = document.getElementById('cvv').value;
-  const cardType = document.getElementById('card-type').value;
-  
-  
-  const matchedData = mockedData.find(entry => {
+  const cardNumber = document.getElementById("card-number").value;
+  const expirationDate = document.getElementById("expiration-date").value;
+  const cvv = document.getElementById("cvv").value;
+  const cardType = document.getElementById("card-type").value;
+
+  const matchedData = mockedData.find((entry) => {
     const x = entry.expiration_date;
-    const y = x.split('-');
+    const y = x.split("-");
     const expiration_date = `${y[1]}/${y[0].slice(2, 4)}`;
-    
-    return entry.card_number == cardNumber &&
-    expiration_date == expirationDate &&
-    entry.cvv == cvv &&
-    entry.card_type == cardType;
+
+    return (
+      entry.card_number == cardNumber &&
+      expiration_date == expirationDate &&
+      entry.cvv == cvv &&
+      entry.card_type == cardType
+    );
   });
   const hotelBoolean = hotelNameAmount(hotelName, hotelAmount, selectedHotel);
   const truOrFalse = userAndMockData(matchedData, hotelBoolean);
 
-  if(!truOrFalse) {
-    alert('Unsuccessful Payment!');
+  if (!truOrFalse) {
+    alert("Unsuccessful Payment!");
     // Redirect user back to payment page
     window.history.back();
   }
-  alert('')
-  window.location.href = '../index.html';
+  alert("");
+  window.location.href = "../index.html";
 }
 export async function loadMockedData() {
   const response = await fetch(cardsUrl, {
