@@ -1,5 +1,6 @@
 const apiKey = "c8273bc0";
 const apiUrl = `https://api.mockaroo.com/api/53c3fbf0?count=1000&key=${apiKey}`;
+const cardsUrl = `https://api.mockaroo.com/api/fbaf4390?count=1000&key=${apiKey}`;
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -123,4 +124,13 @@ export async function ValidatePayments() {
   }
   alert('')
   window.location.href = '../index.html';
+}
+export async function loadMockedData() {
+  const response = await fetch(cardsUrl, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return response;
 }
