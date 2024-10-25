@@ -122,4 +122,5 @@ export async function ValidatePayments() {
     window.history.back();
   }
   alert('')
+  window.location.href = '../index.html';
 }
