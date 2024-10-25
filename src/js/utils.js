@@ -110,10 +110,10 @@ export async function ValidatePayments() {
   
   
   const matchedData = mockedData.find(entry => {
-
     const x = entry.expiration_date;
     const y = x.split('-');
     const expiration_date = `${y[1]}/${y[0].slice(2, 4)}`;
+    
     return entry.card_number == cardNumber &&
     expiration_date == expirationDate &&
     entry.cvv == cvv &&
