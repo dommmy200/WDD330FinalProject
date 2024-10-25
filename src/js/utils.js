@@ -108,11 +108,16 @@ export async function ValidatePayments() {
   const cvv = document.getElementById('cvv').value;
   const cardType = document.getElementById('card-type').value;
   
+  
   const matchedData = mockedData.find(entry => {
-    return entry.card_number==cardNumber &&
-    entry.expiration_date==expirationDate &&
-    entry.cvv==cvv &&
-    entry.card_type==cardType;
+
+    const x = entry.expiration_date;
+    const y = x.split('-');
+    const expiration_date = `${y[1]}/${y[0].slice(2, 4)}`;
+    return entry.card_number == cardNumber &&
+    expiration_date == expirationDate &&
+    entry.cvv == cvv &&
+    entry.card_type == cardType;
   });
   const hotelBoolean = hotelNameAmount(hotelName, hotelAmount, selectedHotel);
   const truOrFalse = userAndMockData(matchedData, hotelBoolean);
