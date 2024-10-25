@@ -83,35 +83,43 @@ export async function fetchMockarooData() {
       }
     });
 }
-// Display the fetched data in the HTML
-// function displayHotels(hotels) {
-//   const hotelsDiv = document.getElementById("hotels");
 
-//   // Slice the array to get only the first 5 hotels
-//   // const firstFiveHotels = hotels.slice(0, 5);
+function hotelNameAmount(name, amount, selected) {
+  if(!name==selected.hotel_name && amount==selected.hotel_amount) {
+    return false;
+  }
+  return true;
+}
+// Validate selected hotel name and amount from localStorage, and mocked card details
+function userAndMockData(fromStorage, fromCard) {
+  return fromStorage && fromCard;
+}
 
-//   hotelsDiv.innerHTML = hotels.slice(0, 5)
-//     .map(
-//       (hotel) => {
-//         const amenities = Array.isArray(hotel.amenities
-//           ? hotel.amenities.join(', ') : hotel.amenities
-//           || "No amenities available!");
-//         const room_types = Array.isArray(hotel.room
-//           ? hotel.room.join(', ') : hotel.room
-//           || "Only one available!")
-//         return `
-//           <div>
-//             <h2>${hotel.hotel_name}</h2>
-//             <img class="h-image" src="${hotel.hotel_image}" alt="${hotel.hotel_name}" loading="lazy" >
-//             <p>City: ${hotel.city}</p>
-//             <p>Address: ${hotel.address}</p>
-//             <p>Check-in: ${hotel.check_in}</p>
-//             <p>Check-out: ${hotel.check_out}</p>
-//             <p>Guest: ${hotel.guest}</p>
-//             <p>Amenities: ${amenities}</p>
-//             <p>Room Types: ${room_types}</p>
-//             <p>Star Rating: ${hotel.rating}</p>
-//             <p>Price: $${hotel.price}</p>
-//           </div>`;})
-//         .join(', ');
-// }
+export async function ValidatePayments() {
+  const mockedData = await loadMockedData();
+  const selectedHotel = JSON.parse(localStorage.getItem('selectedHotel'));
+
+  const hotelName = selectedHotel.hotel_name;
+  const hotelAmount = selectedHotel.hotel_amount;
+
+  const cardNumber = document.getElementById('card-number').value;
+  const expirationDate = document.getElementById('expiration-date').value;
+  const cvv = document.getElementById('cvv').value;
+  const cardType = document.getElementById('card-type').value;
+  
+  const matchedData = mockedData.find(entry => {
+    return entry.card_number==cardNumber &&
+    entry.expiration_date==expirationDate &&
+    entry.cvv==cvv &&
+    entry.card_type==cardType;
+  });
+  const hotelBoolean = hotelNameAmount(hotelName, hotelAmount, selectedHotel);
+  const truOrFalse = userAndMockData(matchedData, hotelBoolean);
+
+  if(!truOrFalse) {
+    alert('Unsuccessful Payment!');
+    // Redirect user back to payment page
+    window.history.back();
+  }
+  alert('')
+}
