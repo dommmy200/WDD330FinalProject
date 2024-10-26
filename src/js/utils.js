@@ -148,7 +148,25 @@ function userAndMockData(fromStorage, fromCard) {
 export function billingInfo() {
   const userRequest = JSON.parse(localStorage.getItem('userProfile'));
   const selectedHotel = JSON.parse(localStorage.getItem('selectedHotel'));
-  const totalAmount = calcTotalAmount(checkin, checkout, price);
+  const checkIn = selectedHotel.check_in;
+  const checkOut = selectedHotel.check_out;
+  const price = selectedHotel.price;
+
+  const totalAmount = calcTotalAmount(checkIn, checkOut, price);
+
+  return `
+    <h1>Selected Hotel: ${selectedHotel.hotel_name}</h1>
+    <p>Guest Name: ${userRequest.lname} ${userRequest.fname}</p>
+    <p>email: ${userRequest.email}</p>
+    <p>Phone Number: ${userRequest.phone}</p><br><br>
+    <p>Room Type: ${selectedHotel.room[0]}</p>
+    <p>Number of Days: ${getTotalDays(checkIn, checkOut)}</p>
+    <p>Required Amenities: ${getAmenities(selectedHotel)}</p>
+    <p>Check-in Date: ${styleDate(selectedHotel.check_in)}</p>
+    <p>Total amount to pay: <strong>$${totalAmount}</strong></p><br>
+    <button class="to-pay" id="to-pay">Make Payment</button>
+    <button class="to-pay" id="to-home">Try Another Hotel?</button>
+  `;
 }
 function calcTotalAmount(checkin, checkout, price) {
   const days = getTotalDays(checkin, checkout);
@@ -178,4 +196,17 @@ function numberToMonth(numb) {
 }
 function superscriptWrap(x) {
   return `<sup>${x}</sup>`;
+}
+function getAmenities(hotel) {
+  const p = document.createElement('p');
+  p.textContent = 'Available amenities: '
+  const amenitiesArray = hotel.amenities;
+  // for (let i = 0, i < amenitiesArray.length, i++) 
+    amenitiesArray.forEach(amenity => {
+    const span = document.createElement('span');
+    span.textContent = amenity;
+    span.textContent = ', ';
+    p.appendChild(span);
+  });
+  return p;
 }
