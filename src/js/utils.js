@@ -83,17 +83,6 @@ export async function fetchMockarooData() {
     });
 }
 
-function hotelNameAmount(name, amount, selected) {
-  if (!name == selected.hotel_name && amount == selected.hotel_amount) {
-    return false;
-  }
-  return true;
-}
-// Validate selected hotel name and amount from localStorage, and mocked card details
-function userAndMockData(fromStorage, fromCard) {
-  return fromStorage && fromCard;
-}
-
 export async function ValidatePayments() {
   const mockedData = await loadMockedData();
   const selectedHotel = JSON.parse(localStorage.getItem("selectedHotel"));
@@ -123,9 +112,13 @@ export async function ValidatePayments() {
 
   if (!truOrFalse) {
     alert("Unsuccessful Payment!");
-    // Redirect user back to payment page
+    // Redirect user back to payment page (wrong approach)
+    // For security reasons, may redirect user to error page.
     window.history.back();
   }
+  // Successful transaction should generate a random token,
+  // display it, send it to user email, inform to check email, 
+  // and redirect the user to home page.
   alert("");
   window.location.href = "../index.html";
 }
@@ -137,4 +130,29 @@ export async function loadMockedData() {
     },
   });
   return response;
+}
+// Validate user input of hotel name and amount at payment and that selected in localStorage
+function hotelNameAmount(name, amount, selected) {
+  if (!name == selected.hotel_name && !amount == selected.hotel_amount) {
+    return false;
+  }
+  return true;
+}
+// Validate selected hotel name and amount from localStorage, and mocked card details
+function userAndMockData(fromStorage, fromCard) {
+  return fromStorage && fromCard;
+}
+
+export function billingInfo() {
+  const userRequest = JSON.parse(localStorage.getItem('userProfile'));
+  const selectedHotel = JSON.parse(localStorage.getItem('selectedHotel'));
+  const totalAmount = calcTotalAmount(checkin, checkout, price);
+}
+function calcTotalAmount(checkin, checkout, price) {
+  const days = getTotalDays(checkin, checkout);
+  return days*price;
+}
+function getTotalDays(checkin, checkout) {
+  const x = Number(checkin.split('-'));
+  const x = Number(checkin.split('-'));
 }
