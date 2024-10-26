@@ -38,6 +38,18 @@ function billingInfo() {
     <button class="to-pay" id="to-pay">Make Payment</button>
     <button class="to-pay" id="to-home">Try Another Hotel?</button>
   `;
+  const toHomePage = document.getElementById('to-pay');
+  const toPayment = document.getElementById('to-home');
+  
+  toPayment.addEventListener('click', () => {
+    alert('Thank you for patronizing!');
+    window.location.href = '../search-form/search.html';
+  });
+
+  toHomePage.addEventListener('click', () => {
+    alert('We guarantee an availability\nof more choices for you.')
+    window.location.href = '../search-result/results.html';
+  });
 }
 billingInfo();
 makePayment();
