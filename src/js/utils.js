@@ -1,6 +1,8 @@
 const apiKey = "c8273bc0";
 const apiUrl = `https://api.mockaroo.com/api/53c3fbf0?count=1000&key=${apiKey}`;
 const cardsUrl = `https://api.mockaroo.com/api/fbaf4390?count=1000&key=${apiKey}`;
+// Create and store this in a json file later.
+const monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -154,5 +156,26 @@ function calcTotalAmount(checkin, checkout, price) {
 }
 function getTotalDays(checkin, checkout) {
   const x = Number(checkin.split('-'));
-  const x = Number(checkin.split('-'));
+  const y = Number(checkout.split('-'));
+  return y -x;
+}
+function styleDate(date) {
+  const x = Number(date.split('-')[2]);
+  const b = numberToMonth(Number(x[1]), monthArray);
+  const superTag = superScriptTag(x);
+  return `${x}${superTag}${b}, ${x[0]}`;
+}
+function superScriptTag(p) {
+  if (p == 1) return superscriptWrap('st');
+  if (p == 2) return superscriptWrap('nd');
+  if (p == 3) return superscriptWrap('rd');
+  return superscriptWrap('th');
+}
+function numberToMonth(numb) {
+  monthArray.forEach((month, index) => {
+    return numb == index ? month : 'Incorrect number entered';
+  });
+}
+function superscriptWrap(x) {
+  return `<sup>${x}</sup>`;
 }
