@@ -16,6 +16,7 @@ function makePayment() {
 }
 
 function billingInfo() {
+  const payment = document.getElementById('payment');
   const userRequest = JSON.parse(localStorage.getItem('userProfile'));
   const selectedHotel = JSON.parse(localStorage.getItem('selectedHotel'));
   const checkIn = selectedHotel.check_in;
@@ -24,7 +25,7 @@ function billingInfo() {
 
   const totalAmount = calcTotalAmount(checkIn, checkOut, price);
 
-  return `
+  payment.innerHTML = `
     <h1>Selected Hotel: ${selectedHotel.hotel_name}</h1>
     <p>Guest Name: ${userRequest.lname} ${userRequest.fname}</p>
     <p>email: ${userRequest.email}</p>
