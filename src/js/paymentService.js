@@ -1,4 +1,4 @@
-import { calcTotalAmount, getTotalDays, getAmenities, styleDate } from "./utils";
+import { calcTotalAmount, getTotalDays, getAmenities, styleDate, properNoun } from "./utils";
 // function makePayment() {
 //   document.addEventListener("DOMContentLoaded", (e) => {
 //     e.preventDefault();
@@ -24,8 +24,8 @@ function billingInfo() {
     const checkIn = selectedHotel.check_in;
     const checkOut = selectedHotel.check_out;
     const price = selectedHotel.price;
-    const fname = userRequest.fname.charAt(0).toUpper();
-    const lname = userRequest.lname.charAt(0).toUpper();
+    const fname = properNoun(userRequest.fname);
+    const lname = properNoun(userRequest.lname);
     const totalAmount = calcTotalAmount(checkIn, checkOut, price);
 
     payment.innerHTML = `
