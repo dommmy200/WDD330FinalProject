@@ -9,7 +9,6 @@ export function transactionForm() {
         // Get card number, cvv, type, savings, background img, fname, lname,
         // username
         try {
-            // const profileArray = [];
             const fname = document.getElementById("firstname").value;
             const lname = document.getElementById("surname").value;
             const username = document.getElementById("username").value;

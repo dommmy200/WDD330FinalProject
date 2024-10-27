@@ -68,8 +68,6 @@ export async function fetchMockarooData() {
         }
         const rate = Number(rating);
         const mPrice = Number(maxPrice);
-        //  const guestS = Number(guests);
-        // console.log("Hotels: ", hotels.slice(0, 10));
         // Filter hotels based on user input
         const filteredHotels = hotels.filter((hotel) => {
           const matchesCity =
@@ -164,8 +162,6 @@ export function getTotalDays(checkin, checkout) {
   const diff = Math.abs(end - start);
   const convertToDays = Math.round(diff/day);
 
-  // const x = Number(checkin.split('-')[2]);
-  // const y = Number(checkout.split('-')[2]);
   return convertToDays;
 }
 export function styleDate(date) {

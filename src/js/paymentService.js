@@ -44,7 +44,7 @@ function billingInfo() {
     const toPayment = document.getElementById('to-home');
     
     toPayment.addEventListener('click', () => {
-      window.location.href = '../booking-confirmation/payment.html';
+      window.location.href = '../card-services/card-issuer.html';
     });
 
     toHomePage.addEventListener('click', () => {
