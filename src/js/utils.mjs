@@ -189,3 +189,4 @@ export function getAmenities(hotel) {
   });
   return p;
 }
+fetchMockarooData();
