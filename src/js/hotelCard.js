@@ -11,3 +11,34 @@ export function renderCard() {
     `;
     return form;
 }
+export function compareSelectCard(mainData, subData) {
+  const nonDuplicates = [];
+  for (const mainObj of mainData) {
+    let isDuplicate = false;
+    for (const subObj of subData) {
+      if (compareObjs(mainObj, subObj)){
+        isDuplicate = true;
+      }
+    }
+    if (!isDuplicate) {
+      nonDuplicates.push(mainObj);
+    }
+  }
+  if (nonDuplicates.length == 0) {
+    return null;
+  }
+  const randomIndex = Math.floor(Math.random()*nonDuplicates.length);
+  return nonDuplicates[randomIndex];
+}
+function compareObjs(obj1, obj2) {
+  const email1 = obj1.email;
+  const email2 = obj2.email;
+
+  const username1 = obj1.username;
+  const username2 = obj2.username;
+
+  if (email1 == email2 && username1 == username2) {
+    return true;
+  }
+  return false;
+}
