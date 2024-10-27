@@ -152,9 +152,15 @@ export function calcTotalAmount(checkin, checkout, price) {
   return days*price;
 }
 export function getTotalDays(checkin, checkout) {
-  const x = Number(checkin.split('-'));
-  const y = Number(checkout.split('-'));
-  return y -x;
+  const start = new Date(checkin);
+  const end = new Date(checkout);
+  const day =  24 * 60 * 60 *1000;
+  const diff = Math.abs(end - start);
+  const convertToDays = Math.round(diff/day);
+
+  // const x = Number(checkin.split('-')[2]);
+  // const y = Number(checkout.split('-')[2]);
+  return convertToDays;
 }
 export function styleDate(date) {
   const x = Number(date.split('-')[2]);
@@ -177,17 +183,25 @@ function superscriptWrap(x) {
   return `<sup>${x}</sup>`;
 }
 export function getAmenities(hotel) {
-  const p = document.createElement('p');
-  p.textContent = 'Available amenities: '
   const amenitiesArray = hotel.amenities;
-  // for (let i = 0, i < amenitiesArray.length, i++) 
-    amenitiesArray.forEach(amenity => {
+  const container = document.createElement('p'); // Container for all spans
+
+  amenitiesArray.forEach(amenity => {
     const span = document.createElement('span');
     span.textContent = amenity;
-    span.textContent = ', ';
-    p.appendChild(span);
+    span.classList.add('amenity-item'); // Optional: add a class for styling
+    container.appendChild(span);
   });
-  return p;
+
+  return container; // Returns the container with all spans inside
+
+
+  // const amenitiesArray = hotel.amenities;
+  // amenitiesArray.forEach(amenity => {
+  //   const span = document.createElement('span');
+  //   span.textContent = amenity;
+  // });
+  // return span;
 }
 export function properNoun(str) {
   const x = str.slice(0, 1).toUpperCase();
