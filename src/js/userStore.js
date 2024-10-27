@@ -33,8 +33,8 @@ app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
 
-export function userProfile() {
-  document.getElementById("user-form").addEventListener("submit", (e) => {
+async function userProfile() {
+  document.getElementById("user-form").addEventListener("submit", await function (e) {
     e.preventDefault();
     try {
       const profileArray = [];
