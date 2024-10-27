@@ -47,17 +47,17 @@ function userProfile() {
       const phone = document.getElementById("phone").value;
 
       const profileObj = {
-        fname: `${fName}`,
-        lName: `${lName}`,
-        oName: `${oName}`,
+        fname: `${fname}`,
+        lname: `${lname}`,
+        oname: `${oname}`,
         age: `${age}`,
         gender: `${gender}`,
         email: `${email}`,
         phone: `${phone}`,
       };
-      profileArray.push(profileObj);
+      // profileArray.push(profileObj);
 
-      localStorage.setItem("userProfile", JSON.stringify(profileArray));
+      localStorage.setItem("userProfile", JSON.stringify(profileObj));
       alert("Thank You!\n\nRedirecting to make payment.");
       window.location.href = "../booking-confirmation/payment.html";
     } catch (error) {
