@@ -155,14 +155,10 @@ export function calcTotalAmount(checkin, checkout, price) {
   const days = getTotalDays(checkin, checkout);
   return days * price;
 }
-export function getTotalDays(ch_in, ch_out) {
-  const start = new Date(ch_in);
-  const end = new Date(ch_out);
-  const day =  (24 * 60 * 60 * 1000);
-  const diff = Math.abs(end - start);
-  const convertToDays = Math.round(diff/day);
-
-  return convertToDays;
+export function getTotalDays(checkin, checkout) {
+  const x = Number(checkin.split('-'));
+  const y = Number(checkout.split('-'));
+  return y -x;
 }
 export function styleDate(date) {
   const x = Number(date.split('-')[2]);

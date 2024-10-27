@@ -37,10 +37,10 @@ function userProfile() {
   document.getElementById("user-form").addEventListener("submit", (e) => {
     e.preventDefault();
     try {
-      const profileArray = [];
-      const fName = document.getElementById("name").value;
-      const lName = document.getElementById("surname").value;
-      const oName = document.getElementById("othername").value;
+      // const profileArray = [];
+      const fname = document.getElementById("firstname").value;
+      const lname = document.getElementById("surname").value;
+      const oname = document.getElementById("othername").value;
       const gender = document.getElementById("gender").value;
       const age = document.getElementById("age").value;
       const email = document.getElementById("email").value;
@@ -50,9 +50,9 @@ function userProfile() {
       const remark = document.getElementById("remark").value;
 
       const profileObj = {
-        fname: `${fName}`,
-        lName: `${lName}`,
-        oName: `${oName}`,
+        fname: `${fname}`,
+        lname: `${lname}`,
+        oname: `${oname}`,
         age: `${age}`,
         gender: `${gender}`,
         email: `${email}`,
@@ -61,9 +61,9 @@ function userProfile() {
         password: `${password}`,
         remark: `${remark}`,
       };
-      profileArray.push(profileObj);
+      // profileArray.push(profileObj);
 
-      localStorage.setItem("userProfile", JSON.stringify(profileArray));
+      localStorage.setItem("userProfile", JSON.stringify(profileObj));
       alert("Thank You!\n\nRedirecting to make payment.");
       window.location.href = "../booking-confirmation/confirm.html";
     } catch (error) {
