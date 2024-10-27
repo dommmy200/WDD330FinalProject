@@ -189,3 +189,8 @@ export function getAmenities(hotel) {
   });
   return p;
 }
+export function properNoun(str) {
+  const x = str.slice(0, 1).toUpperCase();
+  const y = str.slice(1, str.length);
+  return `${x}${y}`;
+}
