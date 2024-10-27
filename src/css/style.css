@@ -1,0 +1,48 @@
+body {
+  width: 100vw;
+  height: auto;
+  margin: 0;
+  padding: 0;
+}
+.final-project {
+  margin: 0 auto;
+  width: 80%;
+  height: 300px;
+  padding: 20px;
+  border: 1px solid#ccc;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.final-project a {
+  width: 100%;
+  background-color: #472929;
+  color: white;
+  font-size: larger;
+  font-weight: 500;
+  border: 2px solid red;
+  text-decoration: none;
+}
+body {
+  font-size: 18px;
+  padding: 20px;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  /* Example of styling a navigation menu differently on mobile */
+  nav {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: block;
+  }
+}
