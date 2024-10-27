@@ -164,9 +164,11 @@ export function getTotalDays(checkin, checkout) {
 }
 export function styleDate(date) {
   const x = Number(date.split('-')[2]);
-  const b = numberToMonth(Number(x[1]), monthArray);
+  const y = Number(date.split('-')[1]);
+  const z = Number(date.split('-')[0]);
+  const b = numberToMonth(y, monthArray);
   const superTag = superScriptTag(x);
-  return `${x}${superTag}${b}, ${x[0]}`;
+  return `${x}${superTag}${b}, ${z}`;
 }
 function superScriptTag(p) {
   if (p == 1) return superscriptWrap('st');
@@ -174,9 +176,17 @@ function superScriptTag(p) {
   if (p == 3) return superscriptWrap('rd');
   return superscriptWrap('th');
 }
-function numberToMonth(numb) {
-  monthArray.forEach((month, index) => {
-    return numb == index ? month : 'Incorrect number entered';
+function numberToMonth(numb, array) {
+  for(let i = 0 ; i  <array.length ; i++) {
+    if (numb == i) {
+      return array[numb];
+    }
+  }
+  array.forEach((month, index) => {
+    if (numb == index) {
+      return month;
+    }
+    return 'None';
   });
 }
 function superscriptWrap(x) {

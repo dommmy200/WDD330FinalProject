@@ -1,4 +1,4 @@
-import { calcTotalAmount, getTotalDays, getAmenities, styleDate, properNoun } from "./utils";
+import { calcTotalAmount, getTotalDays, styleDate, properNoun } from "./utils";
 // function makePayment() {
 //   document.addEventListener("DOMContentLoaded", (e) => {
 //     e.preventDefault();
@@ -35,8 +35,7 @@ function billingInfo() {
       <p>Phone Number: ${userRequest.phone}</p><br><br>
       <p>Room Type: ${selectedHotel.room[0]}</p>
       <p>Number of Days: ${getTotalDays(checkIn, checkOut)}</p>
-      <p>Required Amenities: ${getAmenities(selectedHotel)}</p>
-      <p>Check-in Date: ${styleDate(selectedHotel.check_in)}</p>
+      <p>Check-in Date: ${styleDate(checkIn)}</p>
       <p>Total amount to pay: <strong>$${totalAmount}</strong></p><br>
       <button class="to-pay" id="to-pay">Make Payment</button>
       <button class="to-pay" id="to-home">Try Another Hotel?</button>
