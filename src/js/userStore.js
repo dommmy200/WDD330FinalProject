@@ -34,7 +34,7 @@
 // });
 
 export function userProfile() {
-  document.getElementById("userForm").addEventListener("submit", (e) => {
+  document.getElementById("user-form").addEventListener("submit", (e) => {
     e.preventDefault();
     try {
       const profileArray = [];
