@@ -34,7 +34,7 @@ app.listen(PORT, () => {
 });
 
 export function userProfile() {
-  document.getElementById("userForm").addEventListener("submit", (e) => {
+  document.getElementById("user-form").addEventListener("submit", (e) => {
     e.preventDefault();
     try {
       const profileArray = [];
@@ -45,6 +45,9 @@ export function userProfile() {
       const age = document.getElementById("age").value;
       const email = document.getElementById("email").value;
       const phone = document.getElementById("phone").value;
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const remark = document.getElementById("remark").value;
 
       const profileObj = {
         fname: `${fName}`,
@@ -54,6 +57,9 @@ export function userProfile() {
         gender: `${gender}`,
         email: `${email}`,
         phone: `${phone}`,
+        username: `${username}`,
+        password: `${password}`,
+        remark: `${remark}`,
       };
       profileArray.push(profileObj);
 
