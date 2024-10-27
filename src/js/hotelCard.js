@@ -1,4 +1,6 @@
-export function renderCard() {
+import {readFromJsonFile} from './utils.mjs';
+
+export function makingPayment() {
     const form = `
       <form id="transaction">Payment Transaction
         <label><input type="text" id="fname" name="fname">First Name: </label>
@@ -31,14 +33,34 @@ export function compareSelectCard(mainData, subData) {
   return nonDuplicates[randomIndex];
 }
 function compareObjs(obj1, obj2) {
-  const email1 = obj1.email;
-  const email2 = obj2.email;
+  const cardNumber1 = obj1.cardnumber;
+  const cardNumber2 = obj2.cardnumber;
 
   const username1 = obj1.username;
   const username2 = obj2.username;
 
-  if (email1 == email2 && username1 == username2) {
+  if (cardNumber2 == cardNumber1 && username1 == username2) {
     return true;
   }
   return false;
+}
+export function renderCard() {
+  document.addEventListener('DOMContentLoaded', (e) => {
+    e.preventDefault()
+    const jsonFile = "cards.json"; 
+    const dataArray = readFromJsonFile(jsonFile); //import json file reader
+    
+    // Retrieve hotels from localStorage
+    const userProfile = JSON.parse(localStorage.getItem("userProfile"));
+
+    `<form id="user-card" class="user-card">
+    <h2>Credit Card</h2>
+    <div><span>${fname}</span><span>${lname}</span></div>
+    <label>Amount Required: <h2>${totalAmount}</h2></label>
+    <div><span>${cardtype}</span><span>${cardnumnber}</span><span>${cvv}</span></div>
+    <label><input type="text" name="saving" id="saving" required>Fund Credit Card</input></label>
+    <button name="submit" id="button1">Continue to Payment</button>
+    <button name="submit" id="button2">Back To Profile</button>
+    </form>`
+  });
 }
