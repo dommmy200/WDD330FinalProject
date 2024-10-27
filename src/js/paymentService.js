@@ -55,5 +55,4 @@ function billingInfo() {
 }
 
 billingInfo();
-// transactionForm();
 // makePayment();
