@@ -215,6 +215,7 @@ export function getAmenities(hotel) {
   // });
   // return span;
 }
+// Function to capitalize first letter of a word
 export function properNoun(str) {
   const x = str.slice(0, 1).toUpperCase();
   const y = str.slice(1, str.length);
@@ -243,6 +244,7 @@ export function writeToJsonFile(file) {
     })
   })
 }
+// Reading from json file
 export function readFromJsonFile(file) {
   return JSON.parse(fs.readFileSync(getPath(file), 'utf-8'));
 }
