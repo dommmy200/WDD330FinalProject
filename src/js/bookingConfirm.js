@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Event listener to go 'Back to Hotels' button
   document.getElementById("back-to-hotels").addEventListener("click", () => {
-    window.location.href = "../search-result/result.html"; // Go back to selected hotels list
+    window.history.back() // = "../search-result/result.html"; // Go back to selected hotels list
   });
 
   // Event listener for 'Confirm Booking and Redirection' button

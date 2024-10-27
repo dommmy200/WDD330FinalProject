@@ -87,7 +87,8 @@ export async function fetchMockarooData() {
 
 export async function ValidatePayments() {
   const mockedData = await loadMockedData();
-  const selectedHotel = JSON.parse(localStorage.getItem("selectedHotel"));
+  // const selectedHotel = JSON.parse(localStorage.getItem("selectedHotel"));
+  const selectedHotel = getLocalStorage("selectedHotel");
 
   const hotelName = selectedHotel.hotel_name;
   const hotelAmount = selectedHotel.hotel_amount;
