@@ -151,7 +151,7 @@ export function calcTotalAmount(checkin, checkout, price) {
   const days = getTotalDays(checkin, checkout);
   return days*price;
 }
-function getTotalDays(checkin, checkout) {
+export function getTotalDays(checkin, checkout) {
   const x = Number(checkin.split('-'));
   const y = Number(checkout.split('-'));
   return y -x;
