@@ -1,6 +1,12 @@
 const apiKey = "c8273bc0";
 const apiUrl = `https://api.mockaroo.com/api/53c3fbf0?count=1000&key=${apiKey}`;
 const cardsUrl = `https://api.mockaroo.com/api/fbaf4390?count=1000&key=${apiKey}`;
+
+import fs from 'fs';
+
+function getPath(file){
+  return`./src/public/${file}`;
+}
 // Create and store this in a json file later.
 const monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 // wrapper for querySelector...returns matching element
@@ -217,4 +223,30 @@ export function properNoun(str) {
   const x = str.slice(0, 1).toUpperCase();
   const y = str.slice(1, str.length);
   return `${x}${y}`;
+}
+export function writeToJsonFile(file) {
+  fs.readFile(getPath(file), 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error reading file: ', err);
+      return;
+    }
+    let json;
+    try{
+      json = JSON.parse(data);
+    } catch (parseErr) {
+      console.error('Error parsing JSON: ', parseErr)
+      return;
+    }
+    fs.writeFile(getPath(file), JSON.stringify(json, null, 2), (writeErr) => {
+      if (writeErr) {
+        console.error('Error writing file: ', writeErr);
+        return;
+      }
+      console.log('File updated successfully!');
+
+    })
+  })
+}
+export function readFromJsonFile(file) {
+  return JSON.parse(fs.readFileSync(getPath(file), 'utf-8'));
 }
