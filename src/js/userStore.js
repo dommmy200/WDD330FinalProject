@@ -33,8 +33,8 @@
 //   console.log(`Server running on http://localhost:${PORT}`);
 // });
 
-async function userProfile() {
-  document.getElementById("user-form").addEventListener("submit", await function (e) {
+function userProfile() {
+  document.getElementById("user-form").addEventListener("submit", (e) => {
     e.preventDefault();
     try {
       const profileArray = [];
@@ -59,7 +59,7 @@ async function userProfile() {
 
       localStorage.setItem("userProfile", JSON.stringify(profileArray));
       alert("Thank You!\n\nRedirecting to make payment.");
-      window.location.href = "../booking-confirmation/payment.html";
+      window.location.href = "../booking-confirmation/confirm.html";
     } catch (error) {
       console.log("Error:", error);
     }
