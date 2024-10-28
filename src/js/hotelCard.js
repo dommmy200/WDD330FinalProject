@@ -46,10 +46,10 @@ function compareObjs(obj1, obj2) {
   return false;
 }
 
-export function renderCard() {
+function renderCard() {
   document.addEventListener('DOMContentLoaded', (e) => {
     e.preventDefault()
-    const card = document.getElementById('card-service');
+    const card = document.getElementById("card");
 
     const userProfile = getLocalStorage("userProfile");
     const selectedHotel = getLocalStorage("selectedHotel");
@@ -77,20 +77,22 @@ export function renderCard() {
     <div><span>Type: ${cardType}</span><span>${cardNumber}</span></div>
     <div><span>CVV: ${cardCvv}</span><span>Expire: ${date}</span></div>
     <label><input type="text" name="saving" id="saving" required>Fund Credit Card</input></label>
-    <button name="submit" id="button1">Continue to Payment</button>
-    <button name="submit" id="button2">Back To Profile</button>
+    <button type="button" id="button1">Continue to Payment</button>
+    <button type="button" id="button2">Back To Profile</button>
     </form>`;
     const button1 = document.getElementById('button1');
+    const button2 = document.getElementById('button2');
     card.innerHTML = cardTemplate;
     // Prevent user from continuing to payment
     if (cardAmount < totalAmount) {
-      button1.setAttribute('name', '');
+      button1.setAttribute('id', '');
     }
-    button1.addEventListener('submit', () => {
+    button1.addEventListener('click', () => {
       window.location.href = '../booking-confirmation/transaction.html'; 
     });
-    button1.addEventListener('submit', () => {
-      window.location.href = '../booking-confirmation/transaction.html'; 
+    button2.addEventListener('click', () => {
+      window.location.href = '../user-profile/profile.html'; 
     });
   });
 }
+renderCard();

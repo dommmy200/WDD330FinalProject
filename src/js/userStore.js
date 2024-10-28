@@ -90,7 +90,7 @@ function userProfile() {
       writeToJsonFile(filePath, profileToDB);
       //Store in local storage
       localStorage.setItem("userProfile", JSON.stringify(profileObj));
-      alert("Thank You!\n\nRedirecting to make payment.");
+      alert("Thank you!\n\nConfirm your booking.");
       window.location.href = "../booking-confirmation/booking-confirmation.html";
     } catch (error) {
       console.log("Error:", error);
