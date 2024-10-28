@@ -2,12 +2,15 @@ const apiKey = "c8273bc0";
 const apiUrl = `https://api.mockaroo.com/api/53c3fbf0?count=1000&key=${apiKey}`;
 const cardsUrl = `https://api.mockaroo.com/api/fbaf4390?count=1000&key=${apiKey}`;
 
-import fs from 'fs';
 import { compareSelectCard } from './hotelCard';
-
-function getPath(file){
+// const filePath = '/json/cards.json';
+// const filePath = '/json/user-profile.json';
+export function getPath(file){
   return`./src/public/${file}`;
 }
+// function fetchPath(file) {
+//   return `./${file}`;
+// }
 // Create and store this in a json file later.
 const monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 // wrapper for querySelector...returns matching element
@@ -228,51 +231,44 @@ export function properNoun(str) {
   const y = str.slice(1, str.length);
   return `${x}${y}`;
 }
-// export async function appendToJsonFile(file) {
-//   fs.readFile(getPath(file), 'utf8', (err, data) => {
-//     if (err) {
-//       console.error('Error reading file: ', err);
-//       return;
-//     }
-//     let json;
-//     try{
-//       json = JSON.parse(data);
-//     } catch (parseErr) {
-//       console.error('Error parsing JSON: ', parseErr)
-//       return;
-//     }
-//     fs.writeFile(getPath(file), JSON.stringify(json, null, 2), (writeErr) => {
-//       if (writeErr) {
-//         console.error('Error writing file: ', writeErr);
-//         return;
-//       }
-//       console.log('File updated successfully!');
 
-//     })
-//   })
-// }
-export async function writeToJsonFile(filePath, newData) {
+export async function readFromJsonFile(filePath) {
   try {
-    // Read the existing data from the file
-    const data = await fs.readFile(filePath, 'utf-8');
+    const response = await fetch(filePath); // Fetch the JSON file
+    if (!response.ok) {
+      throw new Error('Failed to fetch card data');
+    }
     
-    // Parse JSON string to an object (javascript)
-    const jsonData = JSON.parse(data);
-    
-    // Append new data to the existing jsonData (array: depending on construct)
-    jsonData.push(newData);
-    
-    // Convert the updated object back to JSON and write to the file
-    await fs.writeFile(filePath, JSON.stringify(jsonData, null, 2));
-    
-    console.log("Data appended successfully!");
+    const data = await response.json();
+    console.log(data); // Optional: log the data
+    return data; // Return the data for further processing
   } catch (error) {
-    console.error("Error appending data:", error);
+    console.error('Error fetching card data:', error);
+    throw error; // Rethrow the error for handling by the caller
   }
 }
 // Reading from json file
-export function readFromJsonFile(file) {
-  return JSON.parse(fs.readFileSync(getPath(file), 'utf-8'));
+export async function writeToJsonFile(cardData) {
+    try {
+      const response = await fetch('http://localhost:3000/update-cards', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(cardData), // Send the card data passed to the function
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to add card');
+      }
+  
+      const result = await response.text();
+      console.log(result); // Optional: log the result
+      return result; // Return the result if needed
+    } catch (error) {
+      console.error('Error:', error);
+      throw error; // Rethrow the error to be handled by the caller
+    }
 }
 export function isCardIssued(name, data) {
   const key = "fname";

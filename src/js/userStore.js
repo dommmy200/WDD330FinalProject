@@ -86,8 +86,10 @@ function userProfile() {
         status: "false",
       };
       // Store in local database
-      const filePath = "../public/user-profile.json";
-      writeToJsonFile(filePath, profileToDB);
+      //const filePath = "../public/user-profile.json";
+      writeToJsonFile(profileToDB)
+      .then(result => console.log('Card added successfully: ', result))
+      .catch(error => console.error('Error adding card: ', error));
       //Store in local storage
       localStorage.setItem("userProfile", JSON.stringify(profileObj));
       alert("Thank you!\n\nConfirm your booking.");
