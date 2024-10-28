@@ -32,6 +32,7 @@ export function compareSelectCard(mainData, subData) {
   const randomIndex = Math.floor(Math.random()*nonDuplicates.length);
   return nonDuplicates[randomIndex];
 }
+
 function compareObjs(obj1, obj2) {
   const cardNumber1 = obj1.cardnumber;
   const cardNumber2 = obj2.cardnumber;
@@ -44,6 +45,7 @@ function compareObjs(obj1, obj2) {
   }
   return false;
 }
+
 export function renderCard() {
   document.addEventListener('DOMContentLoaded', (e) => {
     e.preventDefault()
@@ -64,7 +66,7 @@ export function renderCard() {
     <h2>Credit Card</h2>
     <div><span>${fname}</span><span>${lname}</span></div>
     <label>Amount Required: <h2>${totalAmount}</h2></label>
-    <div><span>${card_type}</span><span>${card_numnber}</span></div>
+    <div><span>${card_type}</span><span>${card_number}</span></div>
     <div><span>${cvv}</span><span>${date}</span></div>
     <label><input type="text" name="saving" id="saving" required>Fund Credit Card</input></label>
     <button name="submit" id="button1">Continue to Payment</button>

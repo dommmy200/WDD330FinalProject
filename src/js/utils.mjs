@@ -3,6 +3,7 @@ const apiUrl = `https://api.mockaroo.com/api/53c3fbf0?count=1000&key=${apiKey}`;
 const cardsUrl = `https://api.mockaroo.com/api/fbaf4390?count=1000&key=${apiKey}`;
 
 import fs from 'fs';
+import { compareSelectCard } from './hotelCard';
 
 function getPath(file){
   return`./src/public/${file}`;
@@ -255,10 +256,10 @@ export async function writeToJsonFile(filePath, newData) {
     // Read the existing data from the file
     const data = await fs.readFile(filePath, 'utf-8');
     
-    // Parse JSON string to an object
+    // Parse JSON string to an object (javascript)
     const jsonData = JSON.parse(data);
     
-    // Append new data to the existing jsonData array
+    // Append new data to the existing jsonData (array: depending on construct)
     jsonData.push(newData);
     
     // Convert the updated object back to JSON and write to the file
@@ -272,4 +273,31 @@ export async function writeToJsonFile(filePath, newData) {
 // Reading from json file
 export function readFromJsonFile(file) {
   return JSON.parse(fs.readFileSync(getPath(file), 'utf-8'));
+}
+export function isCardIssued(name, data) {
+  const key = "fname";
+  const result = data.filter(item => item.person[key] === name).map(item => item.status);
+  return result;
+}
+export function issueCreditCard(surname, profileDb) {
+  const key = "lname";
+  const file1 = "user-profile.json";
+  const file2 = "cards.json";
+  //return an existing card
+  if (isCardIssued(surname, profileDb)) {
+    const data = readFromJsonFile(file1);
+    const result = data.filter(item => item.person[key] === surname).map(item => item.card);
+    return result;
+  }
+  //create a new card
+  const data1 = readFromJsonFile(file1);
+  const data2 = readFromJsonFile(file2)
+  //Randomly select an unused card
+  const result1 = data1.filter(obj => obj.card[card_number] != "").map(obj => obj.card[card_number]);
+  const result2 = data2.filter(item => Object.prototype.hasOwnProperty.call(item, card).map(item => item.card_number))
+  const newCard = compareSelectCard(result2, result1);
+  return newCard;
+}
+export function returnExistingCard() {
+
 }

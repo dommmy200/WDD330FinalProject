@@ -51,30 +51,39 @@ function userProfile() {
       const remark = document.getElementById("remark").value;
       // Template for localStorage
       const profileObj = {
-        fname: `${fname}`,
-        lname: `${lname}`,
-        oname: `${oname}`,
-        age: `${age}`,
-        gender: `${gender}`,
-        email: `${email}`,
-        phone: `${phone}`,
-        username: `${username}`,
-        amount: `${amount}`,
-        remark: `${remark}`,
+        fname: fname,
+        lname: lname,
+        oname: oname,
+        age: age,
+        gender: gender,
+        email: email,
+        phone: phone,
+        username: username,
+        amount: amount,
+        remark: remark,
       };
       // Template for local DB
       const profileToDB = {
-        fname: `${fname}`,
-        lname: `${lname}`,
-        oname: `${oname}`,
-        age: `${age}`,
-        gender: `${gender}`,
-        email: `${email}`,
-        phone: `${phone}`,
-        username: `${username}`,
-        password: `${password}`,
-        amount: `${amount}`,
-        remark: `${remark}`,
+        card: {
+          id_number: 0,
+          cvv: 0,
+          card_type: "",
+          card_number: "",
+          expiration_date: "",
+          amount: amount,
+          username: username,
+          password: password,
+        },
+        person: {
+          fname: fname,
+          lname: lname,
+          oname: oname,
+          age: age,
+          gender: gender,
+          email: email,
+          phone: phone,
+        },
+        status: "false",
       };
       // Store in local database
       const filePath = "../public/user-profile.json";
