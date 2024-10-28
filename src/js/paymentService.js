@@ -29,14 +29,15 @@ function billingInfo() {
     const totalAmount = calcTotalAmount(checkIn, checkOut, price);
 
     payment.innerHTML = `
-      <h1>Selected Hotel: ${selectedHotel.hotel_name}</h1>
-      <p>Guest Name: ${lname} ${fname}</p>
-      <p>email: ${userRequest.email}</p>
-      <p>Phone Number: ${userRequest.phone}</p><br><br>
-      <p>Room Type: ${selectedHotel.room[0]}</p>
-      <p>Number of Days: ${getTotalDays(checkIn, checkOut)}</p>
-      <p>Check-in Date: ${styleDate(checkIn)}</p>
-      <p>Total amount to pay: <strong>$${totalAmount}</strong></p><br>
+      <h1>Your Booking!</h1>
+      <h2><strong>Selected Hotel:</strong> ${selectedHotel.hotel_name}</h2>
+      <p><strong>Guest Name:</strong> ${lname} ${fname}</p>
+      <p><strong>Email:</strong> ${userRequest.email}</p>
+      <p><strong>Phone Number:</strong> ${userRequest.phone}</p>
+      <p><strong>Room Type:</strong> ${selectedHotel.room[0]}</p>
+      <p><strong>Number of Days:</strong> ${getTotalDays(checkIn, checkOut)}</p>
+      <p><strong>Check-in Date:</strong> ${styleDate(checkIn)}</p><br>
+      <p><strong>Total amount to pay:</strong> <strong>$${totalAmount}</strong></p><br>
       <button class="to-pay" id="to-pay">Make Payment</button>
       <button class="to-pay" id="to-home">Try Another Hotel?</button>
     `;

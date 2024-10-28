@@ -34,7 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   } else {
     hotelList.innerHTML =
-      "<p>No hotels available. Please try a different search.\n<strong>For better search: use High Rating\nand increase your Budget</strong></p>";
+      `<p><strong>No hotels available.</strong></p>
+      <p>Use a higher Rating and consider increasing Budget</p>`;
   }
 
   // Event listener for 'Go Back' button
