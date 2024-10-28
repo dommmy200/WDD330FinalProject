@@ -1,4 +1,4 @@
-import {readFromJsonFile} from './utils.mjs';
+import {getLocalStorage, readFromJsonFile, calcTotalAmount, properNoun, formatCardDate} from './utils.mjs';
 
 export function makingPayment() {
     const form = `
@@ -47,17 +47,25 @@ function compareObjs(obj1, obj2) {
 export function renderCard() {
   document.addEventListener('DOMContentLoaded', (e) => {
     e.preventDefault()
-    const jsonFile = "cards.json"; 
-    const dataArray = readFromJsonFile(jsonFile); //import json file reader
-    
-    // Retrieve hotels from localStorage
-    const userProfile = JSON.parse(localStorage.getItem("userProfile"));
 
+    const userProfile = getLocalStorage("userProfile");
+    const selectedHotel = getLocalStorage("selectedHotel");
+    const dataArray = readFromJsonFile("cards.json"); //import json file reader
+    const date = formatCardDate(dataArray); //manipulate dataArray for exact card first before use
+    const checkIn = selectedHotel.check_in;
+    const checkOut = selectedHotel.check_out;
+    const price = selectedHotel.price;
+    const fname = properNoun(userProfile.fname);
+    const lname = properNoun(userProfile.lname);
+    const totalAmount = calcTotalAmount(checkIn, checkOut, price);
+    
+    
     `<form id="user-card" class="user-card">
     <h2>Credit Card</h2>
     <div><span>${fname}</span><span>${lname}</span></div>
     <label>Amount Required: <h2>${totalAmount}</h2></label>
-    <div><span>${cardtype}</span><span>${cardnumnber}</span><span>${cvv}</span></div>
+    <div><span>${card_type}</span><span>${card_numnber}</span></div>
+    <div><span>${cvv}</span><span>${date}</span></div>
     <label><input type="text" name="saving" id="saving" required>Fund Credit Card</input></label>
     <button name="submit" id="button1">Continue to Payment</button>
     <button name="submit" id="button2">Back To Profile</button>
