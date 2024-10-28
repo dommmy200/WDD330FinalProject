@@ -91,7 +91,7 @@ function userProfile() {
       //Store in local storage
       localStorage.setItem("userProfile", JSON.stringify(profileObj));
       alert("Thank You!\n\nRedirecting to make payment.");
-      window.location.href = "../booking-confirmation/payment.html";
+      window.location.href = "../booking-confirmation/booking-confirmation.html";
     } catch (error) {
       console.log("Error:", error);
     }

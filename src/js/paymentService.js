@@ -40,8 +40,8 @@ function billingInfo() {
       <button class="to-pay" id="to-pay">Make Payment</button>
       <button class="to-pay" id="to-home">Try Another Hotel?</button>
     `;
-    const toHomePage = document.getElementById('to-pay');
-    const toPayment = document.getElementById('to-home');
+    const toHomePage = document.getElementById('to-home');
+    const toPayment = document.getElementById('to-pay');
     
     toPayment.addEventListener('click', () => {
       window.location.href = '../card-services/card-issuer.html';
