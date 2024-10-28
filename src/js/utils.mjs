@@ -292,12 +292,9 @@ export function issueCreditCard(surname, profileDb) {
   //create a new card
   const data1 = readFromJsonFile(file1);
   const data2 = readFromJsonFile(file2)
-  //Randomly select an unused card
-  const result1 = data1.filter(obj => obj.card[card_number] != "").map(obj => obj.card[card_number]);
-  const result2 = data2.filter(item => Object.prototype.hasOwnProperty.call(item, card).map(item => item.card_number))
-  const newCard = compareSelectCard(result2, result1);
+  
+  const result1 = data1.filter(obj => obj.card && obj.card.card_number != ""); //.map(obj => obj.card[obj.card.card_number])
+  const result2 = data2.filter(item => Object.prototype.hasOwnProperty.call(item, item.card).map(item => item.card_number))
+  const newCard = compareSelectCard(result2, result1); //Randomly select an unused card
   return newCard;
-}
-export function returnExistingCard() {
-
 }
