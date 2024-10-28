@@ -150,15 +150,14 @@ function userAndMockData(fromStorage, fromCard) {
   return fromStorage && fromCard;
 }
 
-
 export function calcTotalAmount(checkin, checkout, price) {
   const days = getTotalDays(checkin, checkout);
-  return days*price;
+  return days * price;
 }
 export function getTotalDays(checkin, checkout) {
   const start = new Date(checkin);
   const end = new Date(checkout);
-  const day =  24 * 60 * 60 *1000;
+  const day =  24 * 60 * 60 * 1000;
   const diff = Math.abs(end - start);
   const convertToDays = Math.round(diff/day);
 
@@ -177,6 +176,13 @@ function superScriptTag(p) {
   if (p == 2) return superscriptWrap('nd');
   if (p == 3) return superscriptWrap('rd');
   return superscriptWrap('th');
+}
+export function formatCardDate(cardObj){
+  const dateStr = cardObj.expiration_date;
+  const m = dateStr.split('-')[1];
+  const y = dateStr.split('-')[0];
+  const y2 = y.slice(2, 5)[0];
+  return `${m}/${y2}`;
 }
 function numberToMonth(numb, array) {
   for(let i = 0 ; i  <array.length ; i++) {
@@ -221,28 +227,47 @@ export function properNoun(str) {
   const y = str.slice(1, str.length);
   return `${x}${y}`;
 }
-export function writeToJsonFile(file) {
-  fs.readFile(getPath(file), 'utf8', (err, data) => {
-    if (err) {
-      console.error('Error reading file: ', err);
-      return;
-    }
-    let json;
-    try{
-      json = JSON.parse(data);
-    } catch (parseErr) {
-      console.error('Error parsing JSON: ', parseErr)
-      return;
-    }
-    fs.writeFile(getPath(file), JSON.stringify(json, null, 2), (writeErr) => {
-      if (writeErr) {
-        console.error('Error writing file: ', writeErr);
-        return;
-      }
-      console.log('File updated successfully!');
+// export async function appendToJsonFile(file) {
+//   fs.readFile(getPath(file), 'utf8', (err, data) => {
+//     if (err) {
+//       console.error('Error reading file: ', err);
+//       return;
+//     }
+//     let json;
+//     try{
+//       json = JSON.parse(data);
+//     } catch (parseErr) {
+//       console.error('Error parsing JSON: ', parseErr)
+//       return;
+//     }
+//     fs.writeFile(getPath(file), JSON.stringify(json, null, 2), (writeErr) => {
+//       if (writeErr) {
+//         console.error('Error writing file: ', writeErr);
+//         return;
+//       }
+//       console.log('File updated successfully!');
 
-    })
-  })
+//     })
+//   })
+// }
+export async function writeToJsonFile(filePath, newData) {
+  try {
+    // Read the existing data from the file
+    const data = await fs.readFile(filePath, 'utf-8');
+    
+    // Parse JSON string to an object
+    const jsonData = JSON.parse(data);
+    
+    // Append new data to the existing jsonData array
+    jsonData.push(newData);
+    
+    // Convert the updated object back to JSON and write to the file
+    await fs.writeFile(filePath, JSON.stringify(jsonData, null, 2));
+    
+    console.log("Data appended successfully!");
+  } catch (error) {
+    console.error("Error appending data:", error);
+  }
 }
 // Reading from json file
 export function readFromJsonFile(file) {

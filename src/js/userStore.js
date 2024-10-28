@@ -1,3 +1,4 @@
+import { writeToJsonFile } from "./utils.mjs";
 // server.js
 // import express from "express";
 // import { MongoClient } from "mongodb";
@@ -37,7 +38,6 @@ function userProfile() {
   document.getElementById("user-form").addEventListener("submit", (e) => {
     e.preventDefault();
     try {
-      // const profileArray = [];
       const fname = document.getElementById("firstname").value;
       const lname = document.getElementById("surname").value;
       const oname = document.getElementById("othername").value;
@@ -47,8 +47,9 @@ function userProfile() {
       const phone = document.getElementById("phone").value;
       const username = document.getElementById("username").value;
       const password = document.getElementById("password").value;
+      const amount = document.getElementById("amount").value;
       const remark = document.getElementById("remark").value;
-
+      // Template for localStorage
       const profileObj = {
         fname: `${fname}`,
         lname: `${lname}`,
@@ -58,11 +59,27 @@ function userProfile() {
         email: `${email}`,
         phone: `${phone}`,
         username: `${username}`,
-        password: `${password}`,
+        amount: `${amount}`,
         remark: `${remark}`,
       };
-      // profileArray.push(profileObj);
-
+      // Template for local DB
+      const profileToDB = {
+        fname: `${fname}`,
+        lname: `${lname}`,
+        oname: `${oname}`,
+        age: `${age}`,
+        gender: `${gender}`,
+        email: `${email}`,
+        phone: `${phone}`,
+        username: `${username}`,
+        password: `${password}`,
+        amount: `${amount}`,
+        remark: `${remark}`,
+      };
+      // Store in local database
+      const filePath = "../public/user-profile.json";
+      writeToJsonFile(filePath, profileToDB);
+      //Store in local storage
       localStorage.setItem("userProfile", JSON.stringify(profileObj));
       alert("Thank You!\n\nRedirecting to make payment.");
       window.location.href = "../booking-confirmation/payment.html";
