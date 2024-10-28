@@ -1,6 +1,12 @@
 import { resolve } from "path";
-// eslint-disable-next-line import/namespace
 import { defineConfig } from "vite";
+
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+// Create __dirname equivalent
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   root: "src/",
