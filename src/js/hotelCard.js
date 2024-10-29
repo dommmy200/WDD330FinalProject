@@ -52,7 +52,7 @@ export function renderCard() {
     // Attach listener if the DOM is still loading
 
     document.addEventListener('DOMContentLoaded', (e) => {
-      e.preventDefault()
+      e.preventDefault();
       const card = document.getElementById("card");
 
       const userProfile = getLocalStorage("userProfile");
