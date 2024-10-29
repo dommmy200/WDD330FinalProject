@@ -1,5 +1,5 @@
 // import {getLocalStorage, readFromJsonFile, calcTotalAmount, properNoun, formatCardDate, issueCreditCard} from './utils.mjs';
-import {getLocalStorage, calcTotalAmount, properNoun} from './utils.mjs';
+import {getLocalStorage, calcTotalAmount, properNoun, readCardFile, readUserFile, formatCardDate, issueCreditCard} from './utils.mjs';
 
 export function makingPayment() {
     const form = `
@@ -56,30 +56,30 @@ export function renderCreditCard() {
 
       const userProfile = getLocalStorage("userProfile");
       const selectedHotel = getLocalStorage("selectedHotel");
-      // const dataArray = readFromJsonFile("cards.json"); //import json file from database
-      // const profileDb = readFromJsonFile("user-profile.json"); //import json file from database
-      // const date = formatCardDate(dataArray); //manipulate dataArray for exact card first before use
+      const dataArray = readCardFile(); //import json file from database
+      const profileDb = readUserFile("user-profile.json"); //import json file from database
+      const date = formatCardDate(dataArray); //manipulate dataArray for exact card first before use
       const checkIn = selectedHotel.check_in;
       const checkOut = selectedHotel.check_out;
       const price = selectedHotel.price;
       const fname = properNoun(userProfile.fname);
       const lname = properNoun(userProfile.lname);
       const cardAmount = userProfile.amount;
-      // const surname = lname.toLowerCase();
+      const surname = lname.toLowerCase();
       const totalAmount = calcTotalAmount(checkIn, checkOut, price);
       
-      // const newCard = issueCreditCard(surname, profileDb);
-      // const cardType = newCard.card_type;
-      // const cardNumber = newCard.card_number;
-      // const cardCvv = newCard.cvv;
+      const newCard = issueCreditCard(surname, profileDb);
+      const cardType = newCard.card_type;
+      const cardNumber = newCard.card_number;
+      const cardCvv = newCard.cvv;
       
       const cardTemplate = `<form id="card-template" class="card-template">
       <h2>Credit Card</h2>
       <div><span>Name: ${fname}</span><span>${lname}</span></div>
       <label>Hotel Billing: <h2>${totalAmount}</h2></label>
-      <div><span>Type: {cardType}</span><span>{cardNumber}</span></div>
-      <div><span>CVV: {cardCvv}</span><span>Expire: {date}</span></div>
-      <label><input type="text" name="saving" id="saving" required>Fund Credit Card</input></label>
+      <div><span>Type: ${cardType}</span><span>${cardNumber}</span></div>
+      <div><span>CVV: ${cardCvv}</span><span>Expire: ${date}</span></div>
+      <label><input type="text" name="saving" id="saving" required>Fund Credit Card</input></label><br>
       </form>`;
       const myCard = document.getElementById('user-card');
       const button1 = document.getElementById('button1');
