@@ -1,4 +1,4 @@
-import { writeToJsonFile } from "./utils.mjs";
+import { writeToJsonFile } from "./utils.js";
 function userProfile() {
   document.getElementById("user-form").addEventListener("submit", (e) => {
     e.preventDefault();

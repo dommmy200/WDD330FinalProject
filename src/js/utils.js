@@ -321,7 +321,7 @@ export async function isCardIssued(name) {
 // }
 export function issueCreditCard(surname, profileDb) {
   const key = "lname";
-  const file1 = "/json/user-profile.json";
+  const file1 = "/json/users-profile.json";
   const file2 = "/json/cards.json";
   //return an existing card
   if (isCardIssued(surname, profileDb)) {
