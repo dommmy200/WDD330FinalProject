@@ -22,6 +22,7 @@ function userProfile() {
         age: age,
         gender: gender,
         email: email,
+        amount: amount,
         phone: phone,
       };
       // Template for local DB
