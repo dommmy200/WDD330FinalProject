@@ -1,4 +1,3 @@
 [build]
-  base = "wdd330finalproject"
   command = "npm install && npm run build"
-  publish = "wdd330finalproject/dist"
+  publish = "WDD330FinalProject/dist"
