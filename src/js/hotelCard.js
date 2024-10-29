@@ -48,12 +48,11 @@ function compareObjs(obj1, obj2) {
 }
 
 export function renderCreditCard() {
-  if (document.readyState === 'loading') {
+  // if (document.readyState === 'loading') {
     // Attach listener if the DOM is still loading
 
     document.addEventListener('DOMContentLoaded', (e) => {
       e.preventDefault();
-      const myCard = document.getElementById('myCard');
 
       const userProfile = getLocalStorage("userProfile");
       const selectedHotel = getLocalStorage("selectedHotel");
@@ -74,33 +73,51 @@ export function renderCreditCard() {
       // const cardNumber = newCard.card_number;
       // const cardCvv = newCard.cvv;
       
-      const cardTemplate = `<form id="user-card" class="user-card">
+      const cardTemplate = `<form id="card-template" class="card-template">
       <h2>Credit Card</h2>
       <div><span>Name: ${fname}</span><span>${lname}</span></div>
       <label>Hotel Billing: <h2>${totalAmount}</h2></label>
       <div><span>Type: {cardType}</span><span>{cardNumber}</span></div>
       <div><span>CVV: {cardCvv}</span><span>Expire: {date}</span></div>
       <label><input type="text" name="saving" id="saving" required>Fund Credit Card</input></label>
-      <button type="button" id="button1">Continue to Payment</button>
-      <button type="button" id="button2">Back To Profile</button>
       </form>`;
+      const myCard = document.getElementById('user-card');
       const button1 = document.getElementById('button1');
       const button2 = document.getElementById('button2');
       myCard.innerHTML = cardTemplate;
       // Prevent user from continuing to payment
       if (cardAmount < totalAmount) {
-        button1.setAttribute('id', '');
+        button1.setAttribute('disabled', 'disabled');
+        button1.addEventListener('click', () => {
+          window.location.href = '../booking-confirmation/transaction.html'; 
+        });
       }
-      button1.addEventListener('click', () => {
-        window.location.href = '../booking-confirmation/transaction.html'; 
-      });
       button2.addEventListener('click', () => {
         window.location.href = '../user-profile/profile.html'; 
       });
     });
-  } else {
+  // } else {
+  //   // Run immediately if the DOM is already loaded
+  //   console.log('DOM already loaded and parsed');
+  // }
+}
+export function userCreditCard() {
+  // if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', (e) => {
+      e.preventDefault();
+      const userCard = document.getElementById('user-card');
+      const cardTemplate = `<form id="user-card" class="user-card">
+      <h2>Credit Card</h2>
+      <button type="button" id="button1">Continue to Payment</button>
+      <button type="button" id="button2">Back To Profile</button>
+      </form>`;
+      userCard.innerHTML = cardTemplate;
+    });
+  // } else {
     // Run immediately if the DOM is already loaded
-    console.log('DOM already loaded and parsed');
-  }
+    // console.log('DOM already loaded and parsed');
+  // }
+
 }
 renderCreditCard();
+// userCreditCard();
