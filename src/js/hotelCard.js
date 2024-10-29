@@ -48,9 +48,6 @@ function compareObjs(obj1, obj2) {
 }
 
 export function renderCreditCard() {
-  // if (document.readyState === 'loading') {
-    // Attach listener if the DOM is still loading
-
     document.addEventListener('DOMContentLoaded', (e) => {
       e.preventDefault();
 
@@ -64,7 +61,7 @@ export function renderCreditCard() {
       const price = selectedHotel.price;
       const fname = properNoun(userProfile.fname);
       const lname = properNoun(userProfile.lname);
-      const cardAmount = userProfile.amount;
+      const cardAmount = Number(userProfile.amount); // amount is not stored 
       const surname = lname.toLowerCase();
       const totalAmount = calcTotalAmount(checkIn, checkOut, price);
       
@@ -78,13 +75,18 @@ export function renderCreditCard() {
       <div><span>Name: ${fname}</span><span>${lname}</span></div>
       <label>Hotel Billing: <h2>${totalAmount}</h2></label>
       <div><span>Type: ${cardType}</span><span>${cardNumber}</span></div>
-      <div><span>CVV: ${cardCvv}</span><span>Expire: ${date}</span></div>
-      <label><input type="text" name="saving" id="saving" required>Fund Credit Card</input></label><br>
+      <div><span>CVV: ${cardCvv}</span><span>Expire: ${date}</span></div><br>
+      <label>Fund Credit Card<input type="text" name="saving" id="saving"></label>
       </form>`;
+      // Extract data from input and credit user account in the database.
+      // when form loads(no time for that now.)
+
       const myCard = document.getElementById('user-card');
+      if (myCard) {
+        myCard.innerHTML = cardTemplate;
+      }
       const button1 = document.getElementById('button1');
       const button2 = document.getElementById('button2');
-      myCard.innerHTML = cardTemplate;
       // Prevent user from continuing to payment
       if (cardAmount < totalAmount) {
         button1.setAttribute('disabled', 'disabled');

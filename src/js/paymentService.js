@@ -23,7 +23,7 @@ function billingInfo() {
       <p><strong>Number of Days:</strong> ${getTotalDays(checkIn, checkOut)}</p>
       <p><strong>Check-in Date:</strong> ${styleDate(checkIn)}</p><br>
       <p><strong>Total amount to pay:</strong> <strong>$${totalAmount}</strong></p><br>
-      <button class="to-pay" id="to-pay">Make Payment</button>
+      <button class="to-pay" id="to-pay">To Credit Card</button>
       <button class="to-pay" id="to-home">Try Another Hotel?</button>
     `;
     const toHomePage = document.getElementById('to-home');
