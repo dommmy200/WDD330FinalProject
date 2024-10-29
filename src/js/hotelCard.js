@@ -1,5 +1,5 @@
 // import {getLocalStorage, readFromJsonFile, calcTotalAmount, properNoun, formatCardDate, issueCreditCard} from './utils.mjs';
-import {getLocalStorage, calcTotalAmount, properNoun, readCardFile, readUserFile, formatCardDate, issueCreditCard} from './utils.mjs';
+import {getLocalStorage, calcTotalAmount, properNoun, readCardFile, readUserFile, formatCardDate, issueCreditCard} from './utils.js';
 
 export function makingPayment() {
     const form = `
