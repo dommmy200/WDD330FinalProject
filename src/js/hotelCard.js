@@ -88,36 +88,15 @@ export function renderCreditCard() {
       // Prevent user from continuing to payment
       if (cardAmount < totalAmount) {
         button1.setAttribute('disabled', 'disabled');
-        button1.addEventListener('click', () => {
-          window.location.href = '../booking-confirmation/transaction.html'; 
-        });
+        button1.style.color = 'red';
+        button1.style.border = '1px solid black';
       }
+      button1.addEventListener('click', () => {
+        window.location.href = '../booking-confirmation/transaction.html'; 
+      });
       button2.addEventListener('click', () => {
         window.location.href = '../user-profile/profile.html'; 
       });
     });
-  // } else {
-  //   // Run immediately if the DOM is already loaded
-  //   console.log('DOM already loaded and parsed');
-  // }
-}
-export function userCreditCard() {
-  // if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', (e) => {
-      e.preventDefault();
-      const userCard = document.getElementById('user-card');
-      const cardTemplate = `<form id="user-card" class="user-card">
-      <h2>Credit Card</h2>
-      <button type="button" id="button1">Continue to Payment</button>
-      <button type="button" id="button2">Back To Profile</button>
-      </form>`;
-      userCard.innerHTML = cardTemplate;
-    });
-  // } else {
-    // Run immediately if the DOM is already loaded
-    // console.log('DOM already loaded and parsed');
-  // }
-
 }
 renderCreditCard();
-// userCreditCard();
