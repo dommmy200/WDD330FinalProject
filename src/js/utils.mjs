@@ -278,8 +278,8 @@ export function isCardIssued(name, data) {
 }
 export function issueCreditCard(surname, profileDb) {
   const key = "lname";
-  const file1 = "user-profile.json";
-  const file2 = "cards.json";
+  const file1 = "/json/user-profile.json";
+  const file2 = "/json/cards.json";
   //return an existing card
   if (isCardIssued(surname, profileDb)) {
     const data = readFromJsonFile(file1);
