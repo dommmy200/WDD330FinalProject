@@ -8,10 +8,7 @@ import { compareSelectCard } from './hotelCard';
 export function getPath(file){
   return`./src/public/${file}`;
 }
-// function fetchPath(file) {
-//   return `./${file}`;
-// }
-// Create and store this in a json file later.
+// This is for testing purpose: Create and store this in a json file later.
 const monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {

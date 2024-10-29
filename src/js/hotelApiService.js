@@ -71,11 +71,6 @@ export async function fetchAndStoreData() {
   }
 }
 
-// Replace <username>, <password>, <cluster>, and <dbname> with your MongoDB Atlas details
-//const MONGO_URI = 'mongodb+srv://<username>:<password>@cluster.mongodb.net/<dbname>?retryWrites=true&w=majority';
-//const DATABASE_NAME = 'hotelDB';  // Example: Use the same database name you used during Mockaroo insertion
-//const COLLECTION_NAME = 'hotels'; // Example: Use the same collection name
-
 const app = express();
 const PORT = 3000;
 
