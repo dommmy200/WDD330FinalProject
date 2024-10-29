@@ -183,11 +183,12 @@ function superScriptTag(p) {
 }
 export function formatCardDate(cardObj){
   const dateStr = cardObj.expiration_date;
-  const m = dateStr.split('-');
-  const m1 = m[1];
-  const y1 = m[0];
-  const y2 = y1.slice(2, 5);
-  return `${m1}/${y2}`;
+  // const m = dateStr.split('-');
+  // const m1 = m[1];
+  // const y1 = m[0];
+  // const y2 = y1.slice(2, 5);
+  // return `${m1}/${y2}`;
+  return dateStr;
 }
 function numberToMonth(numb, array) {
   for(let i = 0 ; i  <array.length ; i++) {
@@ -232,10 +233,24 @@ export function properNoun(str) {
   const y = str.slice(1, str.length);
   return `${x}${y}`;
 }
-
-export async function readFromJsonFile(filePath) {
+export async function readCardFile() {
   try {
-    const response = await fetch(filePath); // Fetch the JSON file
+    const response = await fetch("/json/cards.json"); // Fetch the JSON file
+    if (!response.ok) {
+      throw new Error('Failed to fetch card data');
+    }
+    
+    const data = await response.json();
+    console.log(data); // Optional: log the data
+    return data; // Return the data for further processing
+  } catch (error) {
+    console.error('Error fetching card data:', error);
+    throw error; // Rethrow the error for handling by the caller
+  }
+}
+export async function readUserFile() {
+  try {
+    const response = await fetch("/json/users-profile.json"); // Fetch the JSON file
     if (!response.ok) {
       throw new Error('Failed to fetch card data');
     }
@@ -271,24 +286,55 @@ export async function writeToJsonFile(cardData) {
       throw error; // Rethrow the error to be handled by the caller
     }
 }
-export function isCardIssued(name, data) {
-  const key = "fname";
-  const result = data.filter(item => item.person[key] === name).map(item => item.status);
-  return result;
+// export function isCardIssued(name, data) {
+//   const key = "fname";
+//   const result = data.filter(item => item.person[key] === name).map(item => item.status);
+//   return result;
+// }
+export async function isCardIssued(name) {
+  try {
+    const response = await fetch('/json/users-profile.json');  // Await fetch to get the response
+    const data = await response.json();  // Await the response to parse JSON
+
+    if (Array.isArray(data)) {
+      const key = "fname";
+      const result = data.some(item => item.person && item.person[key] === name && item.status === 'true');
+      console.log(result);
+      return result;
+    } else {
+      console.error('Expected an array for data, but received:', data);
+    }
+  } catch (error) {
+    console.error('Error fetching or processing data:', error);
+  }
 }
+// export function isCardIssued(name, data) {
+//   if (!Array.isArray(data)) {
+//     console.error(`Expected an array for data, but received:`, data, `Type: ${typeof data}`);
+//     console.log(data);
+//     return null;
+//   }
+//   const key = "fname";
+//   return data.some(item => item.person && item.person[key] === name && item.status === 'issued');
+//   // const result = data
+//   //   .filter(item => item.person && item.person[key] === name)
+//   //   .map(item => item.status);
+
+//   // return result.length ? result : null; // Return null if no matches found
+// }
 export function issueCreditCard(surname, profileDb) {
   const key = "lname";
   const file1 = "/json/user-profile.json";
   const file2 = "/json/cards.json";
   //return an existing card
   if (isCardIssued(surname, profileDb)) {
-    const data = readFromJsonFile(file1);
+    const data = readUserFile(file1);
     const result = data.filter(item => item.person[key] === surname).map(item => item.card);
     return result;
   }
   //create a new card
-  const data1 = readFromJsonFile(file1);
-  const data2 = readFromJsonFile(file2)
+  const data1 = readUserFile(file1);
+  const data2 = readCardFile(file2)
   
   const result1 = data1.filter(obj => obj.card && obj.card.card_number != ""); //.map(obj => obj.card[obj.card.card_number])
   const result2 = data2.filter(item => Object.prototype.hasOwnProperty.call(item, item.card).map(item => item.card_number))
