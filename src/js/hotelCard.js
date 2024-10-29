@@ -57,7 +57,7 @@ export function renderCreditCard() {
       const userProfile = getLocalStorage("userProfile");
       const selectedHotel = getLocalStorage("selectedHotel");
       const dataArray = readCardFile(); //import json file from database
-      const profileDb = readUserFile("user-profile.json"); //import json file from database
+      const profileDb = readUserFile(); //import json file from database
       const date = formatCardDate(dataArray); //manipulate dataArray for exact card first before use
       const checkIn = selectedHotel.check_in;
       const checkOut = selectedHotel.check_out;
