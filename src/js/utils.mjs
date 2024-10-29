@@ -183,10 +183,11 @@ function superScriptTag(p) {
 }
 export function formatCardDate(cardObj){
   const dateStr = cardObj.expiration_date;
-  const m = dateStr.split('-')[1];
-  const y = dateStr.split('-')[0];
-  const y2 = y.slice(2, 5)[0];
-  return `${m}/${y2}`;
+  const m = dateStr.split('-');
+  const m1 = m[1];
+  const y1 = m[0];
+  const y2 = y1.slice(2, 5);
+  return `${m1}/${y2}`;
 }
 function numberToMonth(numb, array) {
   for(let i = 0 ; i  <array.length ; i++) {

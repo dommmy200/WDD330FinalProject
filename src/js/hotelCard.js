@@ -1,5 +1,5 @@
-import {getLocalStorage, readFromJsonFile, calcTotalAmount, properNoun, formatCardDate, issueCreditCard} from './utils.mjs';
-
+// import {getLocalStorage, readFromJsonFile, calcTotalAmount, properNoun, formatCardDate, issueCreditCard} from './utils.mjs';
+import {getLocalStorage, calcTotalAmount, properNoun} from './utils.mjs';
 
 export function makingPayment() {
     const form = `
@@ -47,46 +47,46 @@ function compareObjs(obj1, obj2) {
   return false;
 }
 
-export function renderCard() {
+export function renderCreditCard() {
   if (document.readyState === 'loading') {
     // Attach listener if the DOM is still loading
 
     document.addEventListener('DOMContentLoaded', (e) => {
       e.preventDefault();
-      const card = document.getElementById("card");
+      const myCard = document.getElementById('myCard');
 
       const userProfile = getLocalStorage("userProfile");
       const selectedHotel = getLocalStorage("selectedHotel");
-      const dataArray = readFromJsonFile("cards.json"); //import json file from database
-      const profileDb = readFromJsonFile("user-profile.json"); //import json file from database
-      const date = formatCardDate(dataArray); //manipulate dataArray for exact card first before use
+      // const dataArray = readFromJsonFile("cards.json"); //import json file from database
+      // const profileDb = readFromJsonFile("user-profile.json"); //import json file from database
+      // const date = formatCardDate(dataArray); //manipulate dataArray for exact card first before use
       const checkIn = selectedHotel.check_in;
       const checkOut = selectedHotel.check_out;
       const price = selectedHotel.price;
       const fname = properNoun(userProfile.fname);
       const lname = properNoun(userProfile.lname);
       const cardAmount = userProfile.amount;
-      const surname = lname.toLowerCase();
+      // const surname = lname.toLowerCase();
       const totalAmount = calcTotalAmount(checkIn, checkOut, price);
       
-      const newCard = issueCreditCard(surname, profileDb);
-      const cardType = newCard.card_type;
-      const cardNumber = newCard.card_number;
-      const cardCvv = newCard.cvv;
+      // const newCard = issueCreditCard(surname, profileDb);
+      // const cardType = newCard.card_type;
+      // const cardNumber = newCard.card_number;
+      // const cardCvv = newCard.cvv;
       
       const cardTemplate = `<form id="user-card" class="user-card">
       <h2>Credit Card</h2>
       <div><span>Name: ${fname}</span><span>${lname}</span></div>
       <label>Hotel Billing: <h2>${totalAmount}</h2></label>
-      <div><span>Type: ${cardType}</span><span>${cardNumber}</span></div>
-      <div><span>CVV: ${cardCvv}</span><span>Expire: ${date}</span></div>
+      <div><span>Type: {cardType}</span><span>{cardNumber}</span></div>
+      <div><span>CVV: {cardCvv}</span><span>Expire: {date}</span></div>
       <label><input type="text" name="saving" id="saving" required>Fund Credit Card</input></label>
       <button type="button" id="button1">Continue to Payment</button>
       <button type="button" id="button2">Back To Profile</button>
       </form>`;
       const button1 = document.getElementById('button1');
       const button2 = document.getElementById('button2');
-      card.innerHTML = cardTemplate;
+      myCard.innerHTML = cardTemplate;
       // Prevent user from continuing to payment
       if (cardAmount < totalAmount) {
         button1.setAttribute('id', '');
@@ -103,4 +103,4 @@ export function renderCard() {
     console.log('DOM already loaded and parsed');
   }
 }
-renderCard();
+renderCreditCard();
