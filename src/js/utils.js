@@ -319,13 +319,13 @@ export async function isCardIssued(name) {
 
 //   // return result.length ? result : null; // Return null if no matches found
 // }
-export function issueCreditCard(surname, profileDb) {
+export async function issueCreditCard(surname, profileDb) {
   const key = "lname";
   const file1 = "/json/users-profile.json";
   const file2 = "/json/cards.json";
   //return an existing card
   if (isCardIssued(surname, profileDb)) {
-    const data = readUserFile(file1);
+    const data = await readUserFile(file1);
     const result = data.filter(item => item.person[key] === surname).map(item => item.card);
     return result;
   }
