@@ -2,7 +2,7 @@ const apiKey = "c8273bc0";
 const apiUrl = `https://api.mockaroo.com/api/53c3fbf0?count=1000&key=${apiKey}`;
 const cardsUrl = `https://api.mockaroo.com/api/fbaf4390?count=1000&key=${apiKey}`;
 
-import { compareSelectCard } from './hotelCard';
+import { compareSelectCard } from './hotelCard.mjs';
 // const filePath = '/json/cards.json';
 // const filePath = '/json/user-profile.json';
 export function getPath(file){
