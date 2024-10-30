@@ -1,6 +1,6 @@
 // import {getLocalStorage, readFromJsonFile, calcTotalAmount, properNoun, formatCardDate, issueCreditCard} from './utils.mjs';
 import {getLocalStorage, calcTotalAmount, properNoun, readCardFile, readUserFile, formatCardDate, issueCreditCard} from './utils.js';
-
+import { setLocalStorage } from './utils.js';
 export function makingPayment() {
     const form = `
       <form id="transaction">Payment Transaction
@@ -48,7 +48,7 @@ function compareObjs(obj1, obj2) {
 }
 
 export function renderCreditCard() {
-    document.addEventListener('DOMContentLoaded', (e) => {
+    document.addEventListener('DOMContentLoaded', async (e) => {
       e.preventDefault();
 
       const userProfile = getLocalStorage("userProfile");
@@ -65,7 +65,7 @@ export function renderCreditCard() {
       const surname = lname.toLowerCase();
       const totalAmount = calcTotalAmount(checkIn, checkOut, price);
       
-      const newCard = issueCreditCard(surname, profileDb);
+      const newCard = await issueCreditCard(surname, profileDb);
       const cardType = newCard.card_type;
       const cardNumber = newCard.card_number;
       const cardCvv = newCard.cvv;
@@ -83,15 +83,27 @@ export function renderCreditCard() {
 
       const myCard = document.getElementById('user-card');
       if (myCard) {
-        myCard.innerHTML = cardTemplate;
+        myCard.innerHTML = cardTemplate;//To prevent null error
       }
       const button1 = document.getElementById('button1');
       const button2 = document.getElementById('button2');
+
+      const funding = document.getElementById('button3');
+      funding.addEventListener('click', () => {
+        const fundInput = document.getElementById('saving').value;
+        userProfile.amount = fundInput;
+        console.log(userProfile.amount);
+        setLocalStorage('userProfile', userProfile);
+      });
+
+
       // Prevent user from continuing to payment
       if (cardAmount < totalAmount) {
         button1.setAttribute('disabled', 'disabled');
         button1.style.color = 'red';
-        button1.style.border = '1px solid black';
+        button1.style.border = '1px solid red';
+        button1.textContent = 'Pls. Fund Card!';
+        // fundCard(userProfile);
       }
       button1.addEventListener('click', () => {
         window.location.href = '../booking-confirmation/transaction.html'; 
