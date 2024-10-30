@@ -297,7 +297,6 @@ export async function isCardIssued(name) {
     if (Array.isArray(data)) {
       const key = "fname";
       const result = data.some(item => item.person && item.person[key] === name && item.status === 'true');
-      console.log(result);
       return result;
     } else {
       console.error('Expected an array for data, but received:', data);
