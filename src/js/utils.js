@@ -155,11 +155,12 @@ export function calcTotalAmount(checkin, checkout, price) {
   const days = getTotalDays(checkin, checkout);
   return days * price;
 }
-export function getTotalDays(checkin, checkout) {
-  const start = new Date(checkin);
-  const end = new Date(checkout);
-  const day =  24 * 60 * 60 * 1000;
-  const diff = Math.abs(end - start);
+export function getTotalDays(ch_in, ch_out) {
+  const start = new Date(ch_in);
+  const end = new Date(ch_out);
+  const day =  (24 * 60 * 60 * 1000);
+  // const diff = Math.abs(end - start);
+  const diff = end - start;
   const convertToDays = Math.round(diff/day);
 
   return convertToDays;
@@ -188,9 +189,10 @@ export function formatCardDate(cardObj){
   return dateStr;
 }
 function numberToMonth(numb, array) {
-  for(let i = 0 ; i  <array.length ; i++) {
-    if (numb == i) {
-      return array[numb];
+  const numbEr = numb - 1;
+  for(let i = 0 ; i  < array.length ; i++) {
+    if (numbEr == i) {
+      return array[numbEr];
     }
   }
   array.forEach((month, index) => {
@@ -337,4 +339,16 @@ export async function issueCreditCard(surname, profileDb) {
   const result2 = data2.filter(item => Object.prototype.hasOwnProperty.call(item, item.card).map(item => item.card_number))
   const newCard = compareSelectCard(result2, result1); //Randomly select an unused card
   return newCard;
+}
+export function fundCard(data) {
+  const funding = document.getElementById('funding');
+  funding.addEventListener('click', () => {
+  const fundInput = document.getElementById('fund-card').value;
+    console.log(fundInput);
+    const datastring = JSON.stringify(fundInput);
+    console.log(datastring);
+    data.amount = datastring;
+    console.log(data.amount);
+    setLocalStorage('userProfile', data);
+  });
 }
