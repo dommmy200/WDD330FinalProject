@@ -159,8 +159,7 @@ export function getTotalDays(ch_in, ch_out) {
   const start = new Date(ch_in);
   const end = new Date(ch_out);
   const day =  (24 * 60 * 60 * 1000);
-  // const diff = Math.abs(end - start);
-  const diff = end - start;
+  const diff = Math.abs(end - start);
   const convertToDays = Math.round(diff/day);
 
   return convertToDays;

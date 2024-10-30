@@ -1,6 +1,6 @@
 // import {getLocalStorage, readFromJsonFile, calcTotalAmount, properNoun, formatCardDate, issueCreditCard} from './utils.mjs';
-import {getLocalStorage, calcTotalAmount, properNoun, readCardFile, readUserFile, formatCardDate, issueCreditCard} from './utils.js';
-import { setLocalStorage } from './utils.js';
+import {getLocalStorage, calcTotalAmount, properNoun, readCardFile, readUserFile, formatCardDate, issueCreditCard} from './utils.mjs';
+import { setLocalStorage } from './utils.mjs';
 export function makingPayment() {
     const form = `
       <form id="transaction">Payment Transaction
@@ -89,22 +89,57 @@ export function renderCreditCard() {
       const button2 = document.getElementById('button2');
 
       const funding = document.getElementById('button3');
-      funding.addEventListener('click', () => {
-        const fundInput = document.getElementById('saving').value;
-        userProfile.amount = fundInput;
-        console.log(userProfile.amount);
-        setLocalStorage('userProfile', userProfile);
-      });
-
-
+      const fundInput = document.getElementById('saving');
       // Prevent user from continuing to payment
-      if (cardAmount < totalAmount) {
-        button1.setAttribute('disabled', 'disabled');
-        button1.style.color = 'red';
-        button1.style.border = '1px solid red';
-        button1.textContent = 'Pls. Fund Card!';
-        // fundCard(userProfile);
-      }
+      // if (cardAmount < totalAmount) {
+      //   button1.setAttribute('disabled', 'disabled');
+      //   button1.style.color = 'red';
+      //   button1.style.border = '1px solid red';
+      //   button1.textContent = 'Pls. Fund Card!';
+      //   // fundCard(userProfile);
+      // }
+      // funding.addEventListener('click', () => {
+      //   const fundInput = document.getElementById('saving').value;
+      //   userProfile.amount = fundInput;
+      //   console.log(userProfile.amount);
+      //   setLocalStorage('userProfile', userProfile);
+      // });
+      funding.addEventListener("click", () => {
+        let amount = parseFloat(fundInput.value); // Get initial value
+        let attempts = 0;
+        const amountDiff = Math.abs(cardAmount - totalAmount);
+        // Continue prompting until the condition is met
+        while (isNaN(amount) || amount <= amountDiff) {
+          button1.setAttribute('disabled', 'disabled');
+          button1.style.color = 'red';
+          button1.style.border = '1px solid red';
+          button1.textContent = "Fund card & with valid amount!";
+          attempts++;
+  
+          // Prompt the user to re-enter the amount
+          fundInput.value = ""; // Clear the input field
+          fundInput.focus();
+  
+          // Break to avoid an infinite loop if too many attempts
+          if (attempts >= 3) {
+            button1.textContent = "Too many invalid attempts.";
+            break;
+          }
+  
+          // Wait for user to enter a new value
+          return; // Exit this function and wait for another click
+        }
+        if (amount > amountDiff) {
+          if (totalAmount <= cardAmount) {
+            funding.style.display = 'none';
+            fundInput.style.display = 'none';
+          }
+          userProfile.amount = fundInput;
+          console.log(userProfile.amount);
+          setLocalStorage('userProfile', userProfile);
+          alert('You have successfully funded the credit card.');
+        }
+    });
       button1.addEventListener('click', () => {
         window.location.href = '../booking-confirmation/transaction.html'; 
       });
