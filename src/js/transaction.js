@@ -1,4 +1,4 @@
-import { getLocalStorage, calcTotalAmount, readCardFile, readUserFile } from "./utils";
+import { getLocalStorage, calcTotalAmount, readCardFile, readUserFile, formatCardDate } from "./utils";
 
 
 function transactionForm() {
@@ -68,7 +68,12 @@ function validatePassword(password) {
     const passwordRegex = "^(?=.*[a-z])(?=.[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{6,}$";
     return passwordRegex.text(password);
 }
+// to ensure that 
+// requestAnimationFrame(() => {
 const passwordInput = document.getElementById('pass-w');
+if (passwordInput){
+
+
 passwordInput.addEventListener('input', () => {
     const password = passwordInput.value;
     const isValid = validatePassword(password);
@@ -78,4 +83,6 @@ passwordInput.addEventListener('input', () => {
         alert('Password must be at least 6 characters,\nhave a lower and an upper cases, \na number and a special character.');
     }
 });
+}
+// });
 transactionForm();
