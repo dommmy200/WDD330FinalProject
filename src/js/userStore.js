@@ -1,4 +1,4 @@
-import { writeToJsonFile } from "./utils.mjs";
+// import { writeToJsonFile } from "./utils.mjs";
 function userProfile() {
   document.getElementById("user-form").addEventListener("submit", (e) => {
     e.preventDefault();
@@ -16,16 +16,16 @@ function userProfile() {
       const remark = document.getElementById("remark").value;
 
       const profileObj = {
-        fname: `${fname}`,
-        lname: `${lname}`,
-        oname: `${oname}`,
-        age: `${age}`,
-        gender: `${gender}`,
-        email: `${email}`,
-        phone: `${phone}`,
-        username: `${username}`,
-        password: `${password}`,
-        remark: `${remark}`,
+        fname: fname,
+        lname: lname,
+        oname: oname,
+        age: age,
+        gender: gender,
+        email: email,
+        phone: phone,
+        username: username,
+        password: password,
+        remark: remark,
       };
       // profileArray.push(profileObj);
 
