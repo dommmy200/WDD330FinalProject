@@ -30,7 +30,7 @@ body {
   padding: 20px;
 }
 .background-image {
-  background-image: url(/src/public/images/background-desk.webp);
+  background-image: url(../public/images/background-desk.webp);
   background-size: cover;
   background-position: center;
   width: 100%;
