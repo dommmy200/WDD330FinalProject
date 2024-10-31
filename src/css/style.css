@@ -29,15 +29,21 @@ body {
   font-size: 18px;
   padding: 20px;
 }
-.background-image {
-  background-image: url(../public/images/background-desk.webp);
-  background-size: cover;
-  background-position: center;
-  width: 100%;
+.final-project {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
   height: 300px;
 }
-.background-image img {
-  display: none;
+.background-image{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  object-fit: cover;
+  z-index: -1;
 }
 /* Mobile styles */
 @media (max-width: 768px) {
