@@ -24,6 +24,7 @@ body {
   font-weight: 500;
   border: 2px solid red;
   text-decoration: none;
+  width: 250px;
 }
 body {
   font-size: 18px;
@@ -35,7 +36,8 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  height: 300px;
+  height: 100vh;
+  color: white;
 }
 .background-image{
   position: absolute;
