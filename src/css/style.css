@@ -4,7 +4,7 @@ body {
   margin: 0;
   padding: 0;
 }
-.final-project {
+/* .final-project {
   margin: 0 auto;
   width: 80%;
   height: 300px;
@@ -15,16 +15,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 .final-project a {
   width: 100%;
   background-color: #472929;
   color: white;
   font-size: larger;
   font-weight: 500;
-  border: 2px solid red;
+  border: 2px solid #ccc; 
   text-decoration: none;
   width: 250px;
+  padding: 10px;
 }
 body {
   font-size: 18px;
@@ -44,8 +45,17 @@ body {
   top: 0;
   left: 0;
   width: 100%;
+  border-radius: 5px;
+  border: 1px solid #472929;
   object-fit: cover;
   z-index: -1;
+}
+.final-project:last-child {
+  position: absolute;
+  bottom: 0;
+}
+.backgroundElement {
+  height: 100vh;
 }
 /* Mobile styles */
 @media (max-width: 768px) {
