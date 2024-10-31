@@ -1,4 +1,4 @@
-import { fetchMockarooData } from "./utils";
+import { fetchMockarooData } from "./utils.mjs";
 
 console.log("Hello world!");
 
