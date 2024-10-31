@@ -1,2 +1,3 @@
-const element = document.getElementById('final-project');
-element.classList.add('background-image');
+// const element = document.getElementById('final-project');
+// console.log(element);
+// element.classList.add('background-image');

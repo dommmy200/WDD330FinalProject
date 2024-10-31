@@ -31,6 +31,13 @@ body {
 }
 .background-image {
   background-image: url(/src/public/images/background-desk.webp);
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 300px;
+}
+.background-image img {
+  display: none;
 }
 /* Mobile styles */
 @media (max-width: 768px) {
