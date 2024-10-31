@@ -2,11 +2,13 @@ import { fetchMockarooData } from "./utils.mjs";
 
 console.log("Hello world!");
 
-const backgroundElement = document.getElementById("backgroundElement");
-const mobileImage = "../public/images/searchPage-mobile.webp";
-const desktopImage = "../public/images/searchPage-desk.webp";
+
 // Function to swap background based on screen size
 function setBackground() {
+    const backgroundElement = document.getElementById("backgroundElement");
+    const mobileImage = "/images/searchPage-mobile.webp";
+    const desktopImage = "/images/searchPage-desk.webp";
+    console.log("function call!");
     if (window.matchMedia("(max-width: 768px)").matches) {
         // Mobile view
         backgroundElement.style.backgroundImage = `url(${mobileImage})`;
@@ -17,3 +19,5 @@ function setBackground() {
 }
 fetchMockarooData();
 setBackground();
+// Listen for changes in screen size
+window.addEventListener("resize", setBackground);
