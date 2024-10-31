@@ -29,7 +29,9 @@ body {
   font-size: 18px;
   padding: 20px;
 }
-
+.background-image {
+  background-image: url(/src/public/images/background-desk.webp);
+}
 /* Mobile styles */
 @media (max-width: 768px) {
   body {
