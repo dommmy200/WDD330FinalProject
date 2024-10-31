@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     hotelDetailsDiv.innerHTML = `
         <h2>${selectedHotel.hotel_name}</h2>
         <p>Location: ${selectedHotel.city}</p>
-        <p>Rating: ${selectedHotel.rating} stars</p>
+        <img class="h-image" src="${selectedHotel.hotel_image}" alt="${selectedHotel.hotel_name}" loading="lazy" >
         <p>Rating: ${selectedHotel.rating} stars</p>
         <p>Price per night: $${selectedHotel.price}</p>
       `;
