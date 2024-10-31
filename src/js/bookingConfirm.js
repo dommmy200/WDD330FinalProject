@@ -21,11 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Event listener for 'Confirm Booking and Redirection' button
-  document.getElementById("user-profile").addEventListener("click", () => {
+  document.getElementById("card-issue").addEventListener("click", () => {
     alert(
-      "Booking confirmed! Thank you." + "\nYou may enter personal details now.",
+      "Booking confirmed! Thank you." + "\nCheck Card Details.",
     );
     // Redirect to enter user profile
-    window.location.href = "../user-profile/profile.html";
+    window.location.href = "../card-services/card-issuer.html";
   });
 });
