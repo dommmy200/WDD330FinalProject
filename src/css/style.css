@@ -75,15 +75,17 @@ body {
   list-style: none;
 }
 .section {
+  margin: 0 auto;
+  background-color: blue;
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   grid-template-columns: repeat(3, 1fr);
   grid-template-areas: 
-    "img div img"
-    "img div img"
-    "img div img";
+    "img img img"
+    "img img img"
+    "img img img";
 }
-.section:first-child {
+.section img {
   grid-area: img;
 }
 .section:last-child {
@@ -97,10 +99,12 @@ body {
 }
 .section:last-child {
   grid-area: h1;
+  color: black;
 }
 .section:last-child {
   grid-area: a;
   color: white;
+  list-style: none;
 }
 .backgroundElement {
   height: 100vh;
