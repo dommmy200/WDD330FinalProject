@@ -13,7 +13,7 @@
     <img id="background-element" class="background-element" src="../public/images/background-desk.webp" alt="Search Page Image">
     <form id="hotelSearchForm">
       <label for="city">City:</label>
-      <input type="text" id="city" name="destination" required /><br /><br />
+      <input type="text" id="city" name="destination" placeholder="Enter Desired City" required /><br /><br />
 
       <label for="checkin">Check-in Date:</label>
       <input type="date" id="checkin" name="checkin" required /><br /><br />
@@ -27,6 +27,7 @@
         id="guests"
         name="guests"
         min="1"
+        placeholder="Enter guests Number!"
         required
       /><br /><br />
 
@@ -35,7 +36,7 @@
         type="number"
         id="budget"
         name="budget"
-        placeholder="Please, enter budget!"
+        placeholder="Enter estimate!"
       /><br /><br />
 
       <label for="amenities">Amenities:</label>
@@ -89,9 +90,9 @@
       </select><br /><br />
 
       <label for="request">Special Request:</label>
-      <textarea id="request" name="request"></textarea><br /><br />
+      <textarea id="request" name="request" placeholder="Any Comments?"></textarea><br /><br />
 
-      <input type="submit" value="Search Hotels" />
+      <input class="submit" type="submit" value="Search Hotels" />
     </form>
     <!-- <div id="hotels"></div> -->
   </body>
