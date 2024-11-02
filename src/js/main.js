@@ -1,8 +1,8 @@
-import { fetchMockarooData, apiUrl, setLocalStorage, getLocalStorage } from "./utils.mjs";
+import { apiUrl, setLocalStorage, getLocalStorage } from "./utils.mjs";
 const allCities = "allCities";
 
 export async function getAvailableCities() {
-    document.getElementById('to-search').addEventListener('DOMContentLoaded'), async () => {
+    // document.getElementById('search-body').addEventListener('DOMContentLoaded'), async () => {
         try {
             const response = await fetch(apiUrl, {
                 method: "GET",
@@ -18,24 +18,25 @@ export async function getAvailableCities() {
                 throw new Error("No data!");
             }
             const citiesArray = hotel.map((hotel, index) => {
-                return `${index}: ${hotel.city}`;
-            }).join('');
+                return `${index+1}: ${hotel.city} `;
+            }).join(', ');
             setLocalStorage(allCities, citiesArray);
         } catch (error) {
             console.error("Error Fetching Data: ", error);
         }
-    };
+    // };
 }
 
 export function citiesOptions() {
-    const citiesArray = getLocalStorage("allCities");
+    const citiesString = getLocalStorage("allCities");
+    const citiesArray = citiesString.split(',');
     const citySelected = document.getElementById("city");
-    citySelected.innerHTML = `${citiesArray.map((city) => {
-        const ct = city.split(":").trim();
-        const index = ct[0];
-        const cit = ct[1].toUpperCase();
-        const citi = ct[1];
-        return `<option value="${citi}">${index} => ${cit}</option>`;
+    citySelected.innerHTML = `${citiesArray.map((item) => {
+        const indexAndCity = item.split(":");
+        const indices = indexAndCity[0];
+        const cities = indexAndCity[1].trim().toUpperCase();
+        const city = indexAndCity[1];
+        return `<option value="${city}">${indices} => ${cities}</option>`;
     }).join()}`;
 }
-fetchMockarooData();
+
