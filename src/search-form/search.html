@@ -3,13 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="../js/bookingForm.js" type="module"></script>
+    <script src="../js/bookingForm.mjs" type="module" defer></script>
     <script src="../js/main.js" type="module" defer></script>
+    <link rel="stylesheet" href="../css/style.css">
     <title>Hotel Search</title>
   </head>
-  <body>
+  <body id="search-body" class="search-body">
     <h1>Hotel Search</h1>
-    <div id="backgroundElement" class="backgroundElement" ></div>
+    <img id="background-element" class="background-element" src="../public/images/background-desk.webp" alt="Search Page Image">
     <form id="hotelSearchForm">
       <label for="city">City:</label>
       <input type="text" id="city" name="destination" required /><br /><br />
@@ -29,7 +30,7 @@
         required
       /><br /><br />
 
-      <label for="budget">Max Required Price per Night:</label>
+      <label for="budget">Specify Budget Estimate: </label>
       <input
         type="number"
         id="budget"
@@ -38,7 +39,7 @@
       /><br /><br />
 
       <label for="amenities">Amenities:</label>
-      <div>
+      <div id="amenities" class="amenities">
         <input type="checkbox" id="wifi" name="amenities" value="wifi" />
         <label for="wifi">Wi-Fi</label><br />
 
@@ -69,14 +70,14 @@
       <br /><br />
 
       <label for="rooms">Room Type:</label>
-      <select id="rooms" name="rooms">
+      <select id="rooms" class="room-type" name="rooms">
         <option value="default" selected>Choose an option</option>
         <option value="single">Single</option>
         <option value="double">Double</option>
         <option value="queen">Queen</option>
         <option value="king">King</option>
-        <option value="suite">Suite</option></select
-      ><br /><br />
+        <option value="suite">Suite</option>
+      </select><br /><br />
 
       <label for="rating">Star Rating:</label>
       <select id="rating" name="rating">
@@ -84,14 +85,14 @@
         <option value="2">2 Stars</option>
         <option value="3" selected>3 Stars</option>
         <option value="4">4 Stars</option>
-        <option value="5">5 Stars</option></select
-      ><br /><br />
+        <option value="5">5 Stars</option>
+      </select><br /><br />
 
       <label for="request">Special Request:</label>
       <textarea id="request" name="request"></textarea><br /><br />
 
       <input type="submit" value="Search Hotels" />
     </form>
-    <div id="hotels"></div>
+    <!-- <div id="hotels"></div> -->
   </body>
 </html>
