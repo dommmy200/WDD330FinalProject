@@ -1,3 +1,6 @@
+import { fetchMockarooData } from "./utils.mjs";
+import { citiesOptions, getAvailableCities } from "./main";
+
 //import { searchHotels } from "./searchForm";
 // import { populateHotels } from "./hotelStore";
 // import { submitForm } from "./utils";
@@ -90,3 +93,6 @@ function isValidDate(dateString) {
 //   roomType.innerHTML = room;
 //   stars.innerHTML = rating; 
 // })
+fetchMockarooData();
+getAvailableCities();
+citiesOptions();

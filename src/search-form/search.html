@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="../js/bookingForm.mjs" type="module" defer></script>
-    <script src="../js/main.js" type="module" defer></script>
     <link rel="stylesheet" href="../css/style.css">
     <title>Hotel Search</title>
   </head>
@@ -12,8 +11,11 @@
     <h1>Hotel Search</h1>
     <img id="background-element" class="background-element" src="../public/images/background-desk.webp" alt="Search Page Image">
     <form id="hotelSearchForm">
-      <label for="city">City:</label>
-      <input type="text" id="city" name="destination" placeholder="Enter Desired City" required /><br /><br />
+      <!-- <label for="city">City:</label>
+      <input type="text" id="city" name="destination" placeholder="Enter Desired City" required /><br /><br /> -->
+      
+      <label for="city">City</label>
+      <select name="city" id="city">Select A City</select>
 
       <label for="checkin">Check-in Date:</label>
       <input type="date" id="checkin" name="checkin" required /><br /><br />
