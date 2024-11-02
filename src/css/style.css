@@ -132,6 +132,7 @@ main {
   width: 250px;
   text-align: center;
   background-color: antiquewhite;
+  border-radius: 7px;
 }
 .background-element {
   margin: 0;
@@ -141,12 +142,30 @@ main {
 }
 #hotelSearchForm {
   position: absolute;
-  top: 130px;
+  top: 100px;
   left: calc(25% - 200px);
   width: 400px;
   color: rgb(7, 7, 7);
   background-color: bisque;
   padding: 15px;
+  border-radius: 10px;
+}
+.submit {
+  background-color: rgb(74, 41, 41);
+  color: white;
+  height: 52px;
+  width: 202px;
+  margin-left: 100px;
+  font-size: large;
+  border-radius: 8px;
+}
+.submit:hover {
+  color: white;
+  height: 52px;
+  width: 202px;
+  font-size: medium;
+  background-color: rgb(74, 41, 41);
+  border: 1px red solid;
 }
 /* Mobile styles */
 @media (max-width: 768px) {
