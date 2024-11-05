@@ -1,7 +1,7 @@
 import { apiUrl, setLocalStorage, getLocalStorage } from "./utils.mjs";
 const allCities = "allCities";
 
-export async function getAvailableCities() {
+export async function setAvailableCities() {
     // document.getElementById('search-body').addEventListener('DOMContentLoaded'), async () => {
         try {
             const response = await fetch(apiUrl, {
@@ -27,14 +27,14 @@ export async function getAvailableCities() {
     // };
 }
 
-export function citiesOptions() {
-    const citiesString = getLocalStorage("allCities");
+export async function citiesOptions() {
+    const citiesString = await getLocalStorage("allCities");
     const citiesArray = citiesString.split(',');
     const citySelected = document.getElementById("city");
     citySelected.innerHTML = `${citiesArray.map((item) => {
         const indexAndCity = item.split(":");
         const indices = indexAndCity[0];
-        const cities = indexAndCity[1].trim().toUpperCase();
+        const cities = indexAndCity[1].toUpperCase();
         const city = indexAndCity[1];
         return `<option value="${city}">${indices} => ${cities}</option>`;
     }).join()}`;
@@ -82,7 +82,7 @@ export function populateForm() {
         <option value="2">2 Stars</option>
         <option value="3" selected>3 Stars</option>
         <option value="4">4 Stars</option>
-        <option value="5">5 Stars</option>`;
+        <option value="5">5 Stars</option>`
     amenities.innerHTML = amenity;
     roomType.innerHTML = room;
     stars.innerHTML = rating; 
