@@ -34,24 +34,16 @@ export function getParams(param) {
 
 // Fetch 5 random hotel entries from Mockaroo
 export async function fetchMockarooData() {
-  document
-    .getElementById("hotelSearchForm")
-    .addEventListener("submit", async function (e) {
+  console.log("We're here! 1");
+  document.getElementById("hotelSearchForm").addEventListener("submit", async function (e) {
+      console.log("We're here! 2");
       e.preventDefault(); // Prevent form from reloading the page
       // Get user input values
-      const city = document
-        .getElementById("city")
-        .value.toLowerCase()
-        .slice(0, 3);
+      const city = document.getElementById("city").value.toLowerCase().slice(0, 3);
       // const guests = document.getElementById('guests').value;
       const rating = document.getElementById("rating").value;
       const maxPrice = document.getElementById("budget").value;
-      // const rooms = document.getElementById('rooms').value;
-      // Get selected amenities from checkboxes
-      // const amenities = document.querySelectorAll('input[name="amenities"]:checked');
-      // const selectedAmenities = Array.from(amenities)
-      // .map(checkbox => checkbox.value);
-      // console.log("User input: Guests", guests," & Hotel Rating", rating);
+      console.log("We're here! 3");
       try {
         const response = await fetch(apiUrl, {
           method: "GET",
@@ -76,9 +68,15 @@ export async function fetchMockarooData() {
           // const rooms_ = hotel.room[0].toLowerCase();
           const matchesStarRating = !rate || hotel.rating <= rate;
           const matchesPrice = !mPrice || hotel.price <= mPrice;
+          if (matchesStarRating && matchesPrice && matchesCity) {
+            return filteredHotels;
+          } else {
+            console.log("Enter array returned!");
+          }
 
-          return matchesStarRating && matchesPrice && matchesCity;
+          // return matchesStarRating && matchesPrice && matchesCity;
         });
+        console.log(filteredHotels);
         // Assume 'filteredHotels' is the array of hotel objects you want to display
         localStorage.setItem("filteredHotels", JSON.stringify(filteredHotels));
         window.location.href = "../search-result/results.html"; // Redirect to the new page
@@ -175,13 +173,7 @@ function superScriptTag(p) {
   return superscriptWrap('th');
 }
 export function formatCardDate(cardObj){
-  const dateStr = cardObj.expiration_date;
-  // const m = dateStr.split('-');
-  // const m1 = m[1];
-  // const y1 = m[0];
-  // const y2 = y1.slice(2, 5);
-  // return `${m1}/${y2}`;
-  return dateStr;
+  return cardObj.expiration_date;
 }
 function numberToMonth(numb, array) {
   const numbEr = numb - 1;
@@ -212,14 +204,6 @@ export function getAmenities(hotel) {
   });
 
   return container; // Returns the container with all spans inside
-
-
-  // const amenitiesArray = hotel.amenities;
-  // amenitiesArray.forEach(amenity => {
-  //   const span = document.createElement('span');
-  //   span.textContent = amenity;
-  // });
-  // return span;
 }
 // Function to capitalize first letter of a word
 export function properNoun(str) {
