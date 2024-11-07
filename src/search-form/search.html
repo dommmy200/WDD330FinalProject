@@ -14,8 +14,15 @@
       <!-- <label for="city">City:</label>
       <input type="text" id="city" name="destination" placeholder="Enter Desired City" required /><br /><br /> -->
       
-      <label for="city">City</label>
-      <select name="city" id="city" placeholder="Enter Desired City" required >Select A City</select><br /><br />
+      <fieldset class="fieldset">
+        <legend>Cities Selector:</legend>
+        <label for="searchInput">City</label>
+        <!-- <select name="city" id="city" placeholder="Enter Desired City" required >Select A City</select><br /><br /> -->
+        <input type="text" id="serchInput" placeholder="Enter Desired City" required >
+        <ul id="optionsList"></ul>
+        <button type="button" id="prevButton">Preview</button>
+        <button type="button" id="nextButton">Preview</button>
+      </fieldset>
 
       <label for="checkin">Check-in Date:</label>
       <input type="date" id="checkin" name="checkin" required /><br /><br />
@@ -53,7 +60,8 @@
       <label for="request">Special Request:</label>
       <textarea id="request" name="request" placeholder="Any Comments?"></textarea><br /><br />
 
-      <input class="submit" type="submit" value="Search Hotels" />
+      <!-- <input class="submit" type="submit" value="Search Hotels" /> -->
+      <button class="submit" type="submit">Search Hotels</button>
     </form>
     <!-- <div id="hotels"></div> -->
   </body>
