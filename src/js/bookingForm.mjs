@@ -1,5 +1,4 @@
-import { fetchMockarooData } from "./utils.mjs";
-import { citiesOptions, setAvailableCities, populateForm } from "./main.mjs";
+import { setupSearchForm } from "./main.mjs";
 
 export function validateBookingForm() {
   // Check required fields
@@ -37,7 +36,4 @@ function isValidDate(dateString) {
   const regex = /^\d{4}-\d{2}-\d{2}$/;
   return regex.test(dateString);
 }
-fetchMockarooData();
-setAvailableCities();
-citiesOptions();
-populateForm();
+setupSearchForm();

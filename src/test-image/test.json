@@ -1,0 +1,114 @@
+[
+    {
+      "city": "Lagos",
+      "hotels": [
+        { "hotel_name": "InterContinental",
+            "address": "9th Floor",
+            "check_in": "2024-04-25",
+            "check_out": "2023-12-15",
+            "amenities": [
+            "Pool",
+            "Airport Shuttle",
+            "Restaurant",
+            "Gym"
+            ],
+            "room": [
+            "Double"
+            ],
+            "rating": 4,
+            "price": 488,
+            "hotel_image": "https://picsum.photos/seed/Voonte/600/400",
+            "guest": 3},
+        { "hotel_name": "Radisson Blu",
+            "address": "9th Floor",
+            "check_in": "2024-04-25",
+            "check_out": "2023-12-15",
+            "amenities": [
+            "Pool",
+            "Airport Shuttle",
+            "Restaurant",
+            "Gym"
+            ],
+            "room": [
+            "Double"
+            ],
+            "rating": 4,
+            "price": 488,
+            "hotel_image": "https://picsum.photos/seed/Voonte/600/400",
+            "guest": 3 },
+        { "hotel_name": "The Federal Palace Hotel",
+            "city": "Sarlat-la-Canéda",
+            "address": "9th Floor",
+            "check_in": "2024-04-25",
+            "check_out": "2023-12-15",
+            "amenities": [
+            "Pool",
+            "Airport Shuttle",
+            "Restaurant",
+            "Gym"
+            ],
+            "room": [
+            "Double"
+            ],
+            "rating": 4,
+            "price": 488,
+            "hotel_image": "https://picsum.photos/seed/Voonte/600/400",
+            "guest": 3 },
+        { "hotel_name": "Lagos Oriental Hotel",
+            "address": "9th Floor",
+            "check_in": "2024-04-25",
+            "check_out": "2023-12-15",
+            "amenities": [
+            "Pool",
+            "Airport Shuttle",
+            "Restaurant",
+            "Gym"
+            ],
+            "room": [
+            "Double"
+            ],
+            "rating": 4,
+            "price": 488,
+            "hotel_image": "https://picsum.photos/seed/Voonte/600/400",
+            "guest": 3, },
+        { "hotel_name": "Broadway Inn" },
+        { "hotel_name": "Skyline Suites" }
+      ]
+    },
+    {
+      "city": "San Francisco",
+      "hotels": [
+        { "hotel_name": "Golden Gate Suites" },
+        { "hotel_name": "Bayfront Lodge" }
+      ]
+    },
+    {
+      "city": "Los Angeles",
+      "hotels": [
+        { "hotel_name": "Sunset Boulevard Inn" },
+        { "hotel_name": "Hollywood Haven" },
+        { "hotel_name": "Rodeo Drive Suites" },
+        { "hotel_name": "Venice Beach Lodge" }
+      ]
+    },
+    {
+        "hotel_name": "Voonte",
+        "city": "Sarlat-la-Canéda",
+        "address": "9th Floor",
+        "check_in": "2024-04-25",
+        "check_out": "2023-12-15",
+        "amenities": [
+          "Pool",
+          "Airport Shuttle",
+          "Restaurant",
+          "Gym"
+        ],
+        "room": [
+          "Double"
+        ],
+        "rating": 4,
+        "price": 488,
+        "hotel_image": "https://picsum.photos/seed/Voonte/600/400",
+        "guest": 3
+      }
+  ]

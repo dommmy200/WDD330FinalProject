@@ -34,60 +34,55 @@ export function getParams(param) {
 
 // Fetch 5 random hotel entries from Mockaroo
 export async function fetchMockarooData() {
-  console.log("We're here! 1");
   document.getElementById("hotelSearchForm").addEventListener("submit", async function (e) {
-      console.log("We're here! 2");
-      e.preventDefault(); // Prevent form from reloading the page
+    e.preventDefault(); // Prevent form from reloading the page
+    const hotels = fetchUrl(apiUrl);
+    try {
       // Get user input values
-      const city = document.getElementById("city").value.toLowerCase().slice(0, 3);
-      // const guests = document.getElementById('guests').value;
+      const city = document.getElementById("city").value.toLowerCase();
       const rating = document.getElementById("rating").value;
       const maxPrice = document.getElementById("budget").value;
-      console.log("We're here! 3");
-      try {
-        const response = await fetch(apiUrl, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        console.log("Response: ", response);
-        const hotels = await response.json();
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status}`);
+      const rate = Number(rating);
+      const mPrice = Number(maxPrice);
+      // Filter hotels based on user input
+      const filteredHotels = hotels.filter((hotel) => {
+        const matchesCity =
+          !city || hotel.city.toLowerCase().includes(city);
+        const matchesStarRating = !rate || hotel.rating <= rate;
+        const matchesPrice = !mPrice || hotel.price <= mPrice;
+        if (matchesStarRating && matchesPrice && matchesCity) {
+          return hotel;
         }
+      });
+      console.log(filteredHotels);
+      // Assume 'filteredHotels' is the array of hotel objects you want to display
+      localStorage.setItem("filteredHotels", JSON.stringify(filteredHotels));
+      window.location.href = "../search-result/results.html"; // Redirect to the new page
+    } catch (error) {
+      console.error("Error of :", error);
+    }
+  });
+}
+export async function fetchUrl(url) {
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
+    }
+    const hotels = await response.json();
         if (!Array.isArray(hotels) || hotels.length === 0) {
           throw new Error("No hotel data received. Check the API response.");
         }
-        const rate = Number(rating);
-        const mPrice = Number(maxPrice);
-        // Filter hotels based on user input
-        const filteredHotels = hotels.filter((hotel) => {
-          const matchesCity =
-            !city || hotel.city.toLowerCase().slice(0, 3).includes(city);
-          // const rooms_ = hotel.room[0].toLowerCase();
-          const matchesStarRating = !rate || hotel.rating <= rate;
-          const matchesPrice = !mPrice || hotel.price <= mPrice;
-          if (matchesStarRating && matchesPrice && matchesCity) {
-            return filteredHotels;
-          } else {
-            console.log("Enter array returned!");
-          }
-
-          // return matchesStarRating && matchesPrice && matchesCity;
-        });
-        console.log(filteredHotels);
-        // Assume 'filteredHotels' is the array of hotel objects you want to display
-        localStorage.setItem("filteredHotels", JSON.stringify(filteredHotels));
-        window.location.href = "../search-result/results.html"; // Redirect to the new page
-
-        // displayHotels(filteredHotels);
-      } catch (error) {
-        console.error("Error fetching data from Mockaroo:", error);
-      }
-    });
+    return hotels;
+  } catch (error) {
+    console.error("Fetching data error:", error);
+  }
 }
-
 export async function ValidatePayments() {
   const mockedData = await loadMockedData();
   // const selectedHotel = JSON.parse(localStorage.getItem("selectedHotel"));
